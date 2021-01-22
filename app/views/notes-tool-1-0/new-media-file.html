@@ -1,0 +1,46 @@
+
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{% call govukFieldset({
+				legend:
+				{
+					text: "Add an image or video",
+					classes: "govuk-fieldset__legend--xl",
+					isPageHeading: true
+				}
+			}) %}
+			{{ govukFileUpload({
+				id: "file-upload-1",
+				name: "file-upload-1",
+				label:
+				{
+					classes: "govuk-!-margin-top-6",
+					text: "Upload a file"
+				}
+			}) }}
+			{% endcall %}
+
+			<p class="govuk-!-margin-bottom-0">
+				{{govukButton({
+					text: "Upload"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

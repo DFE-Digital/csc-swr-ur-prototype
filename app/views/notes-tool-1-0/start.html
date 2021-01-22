@@ -1,0 +1,50 @@
+
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+			{{serviceName}}
+		</h1>
+
+		<p class="govuk-body-l">
+			Social workers can use this service to record notes, images and audio from a social work assessment visit.
+		</p>
+
+		<p>
+			You can:
+		</p>
+
+		<ul class="govuk-list govuk-list--bullet">
+			<li>record written notes</li>
+			<li>add photos and videos</li>
+			<li>add audio recordings</li>
+			<li>convert audio recordings to text</li>
+			<li>export assessment notes</li>
+		</ul>
+
+		<p>
+			You must use your local authority email address to access this service.
+		</p>
+
+
+		<p>
+			You will only be able to use this service if your Local authority is part of this Alpha.
+		</p>
+
+		<p>
+			{{govukButton({
+				text: "Start now",
+				href: "existing-or-new",
+				isStartButton: true
+			})}}
+		</p>
+	</div>
+</div>
+{% endblock %}
