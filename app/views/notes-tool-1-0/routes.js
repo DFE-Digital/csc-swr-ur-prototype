@@ -54,6 +54,22 @@ router.get('/written-note', (req, res, next) => {
 	res.render(`${req.version}/written-note`, {note})
 })
 
+router.post('/written-note', (req, res, next) => {
+	let id = req.session.data['id']
+
+	// find the position of the matching id
+	let pos = req.session.data['written-notes'].findIndex(note => note.id == id)
+
+	// update the values
+	req.session.data['written-notes'][pos].text = req.session.data['note-content']
+	req.session.data['written-notes'][pos].timestamp = Date.now()
+
+	delete req.session.data['note-content']
+	delete req.session.data['id']
+
+	res.redirect('assessment-notes')
+})
+
 router.post('/cancel-written-note', (req, res, next) => {
 	let id = req.session.data['id']
 

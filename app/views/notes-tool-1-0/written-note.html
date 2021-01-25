@@ -10,10 +10,10 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 		<form method="post">
-			{% set noteContent = data['new-note-content'] or note[0]['text'] %}
+			{% set noteContent = note[0]['text'] %}
 			{{ govukTextarea({
-				name: "new-note-content",
-				id: "new-note-content",
+				name: "note-content",
+				id: "note-content",
 				label:
 				{
 					text: "Edit written note",
