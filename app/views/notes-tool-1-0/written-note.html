@@ -11,8 +11,12 @@
 	<div class="govuk-grid-column-two-thirds">
 		<form method="post">
 			{% set noteContent = note[0]['text'] | striptags(true) | escape | nl2br %}
+
 			<h1 class="govuk-heading-xl">
 				Written note
+				<span class="govuk-caption-m">
+					Created on {{note.timestamp | formatDate('DD MMMM YYYY')}}
+				</span>
 			</h1>
 			<p>
 				{{noteContent}}
