@@ -44,6 +44,16 @@ router.post('/new-written-note', (req, res, next) => {
 	res.redirect('assessment-notes')
 })
 
+router.get('/written-note', (req, res, next) => {
+	let id = req.session.data['id']
+
+	let note = req.session.data['written-notes'].filter(function (el) {
+		return el.id === id
+	});
+
+	res.render(`${req.version}/written-note`, {note})
+})
+
 router.post('/cancel-written-note', (req, res, next) => {
 	let id = req.session.data['id']
 
