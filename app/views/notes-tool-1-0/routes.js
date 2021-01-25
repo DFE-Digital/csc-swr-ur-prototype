@@ -44,17 +44,27 @@ router.post('/new-written-note', (req, res, next) => {
 	res.redirect('assessment-notes')
 })
 
-router.get('/written-note', (req, res, next) => {
-	let id = req.session.data['id']
-
+function getNote(req, res, id) {
 	let note = req.session.data['written-notes'].filter(function (el) {
 		return el.id === id
 	});
 
+	return note
+}
+
+router.get('/written-note', (req, res, next) => {
+	let note = getNote(req, res, req.session.data['id'])
+
 	res.render(`${req.version}/written-note`, {note})
 })
 
-router.post('/written-note', (req, res, next) => {
+router.get('/edit-written-note', (req, res, next) => {
+	let note = getNote(req, res, req.session.data['id'])
+
+	res.render(`${req.version}/edit-written-note`, {note})
+})
+
+router.post('/edit-written-note', (req, res, next) => {
 	let id = req.session.data['id']
 
 	// find the position of the matching id

@@ -10,32 +10,26 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 		<form method="post">
-			{% set noteContent = note[0]['text'] %}
-			{{ govukTextarea({
-				name: "note-content",
-				id: "note-content",
-				label:
-				{
-					text: "Edit written note",
-					classes: "govuk-label--xl",
-					isPageHeading: true
-				},
-				rows: "20",
-				hint:
-				{
-					text: "Last saved 2 minutes ago."
-				},
-				value: noteContent
-			}) }}
+			{% set noteContent = note[0]['text'] | striptags(true) | escape | nl2br %}
+			<h1 class="govuk-heading-xl">
+				Written note
+			</h1>
+			<p>
+				{{noteContent}}
+			</p>
+
+			<hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
 
 			<p class="govuk-!-margin-bottom-0">
 				{{govukButton({
-					text: "Save and continue"
+					text: "Edit note",
+					href: "edit-written-note?id=" + data['id']
 				})}}
 			</p>
+
 			<p>
 				{{ govukButton({
-					text: "Cancel and delete this note",
+					text: "Delete note",
 					classes: "govuk-button--warning",
 					attributes:
 					{
@@ -46,32 +40,6 @@
 				}) }}
 			</p>
 		</form>
-	</div>
-
-	<div class="govuk-grid-column-one-third">
-		<h2 class="govuk-heading-m">
-			Help with tagging
-		</h2>
-
-		<h3 class="govuk-heading-s">
-			People
-		</h3>
-		<p>
-			Use '<code>@</code>' symbols to tag people.
-		</p>
-		<p>
-			For example, '<code>@Jay Smith@</code>'.
-		</p>
-
-		<h3 class="govuk-heading-s">
-			Highlighting
-		</h3>
-		<p>
-			Use three asterisks to highlight parts of your notes.
-		</p>
-		<p>
-			For example, '<code>***This sentence is important.***</code>'.
-		</p>
 	</div>
 </div>
 {% endblock %}
