@@ -4,12 +4,14 @@ const crypto = require('crypto')
 
 // Add your routes here - above the module.exports line
 
+// Use this to set the service name on all page in this version
 router.all('*', function (req, res, next) {
 	res.locals['serviceName'] = 'Record a social work assessment visit'
 
 	next()
 })
 
+// recirect route to start page
 router.get('/', (req, res, next) => {
 	res.redirect(`/${req.version}/start`)
 })
