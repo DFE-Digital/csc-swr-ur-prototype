@@ -17,10 +17,30 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/type-of-contact', (req, res, next) => {
-	if(req.session.data['type-of-contact'] == 'case-note'){
+	let type = req.session.data['type-of-contact']
+
+	if(type == 'case-note' || type == 'daily-record'){
 		res.redirect('contact-date')
 	} else {
 		res.redirect('not-built-yet')
+	}
+})
+
+router.post('/contact-time', (req, res, next) => {
+	let type = req.session.data['type-of-contact']
+
+	if(type == 'case-note'){
+		res.redirect('contact-method')
+	} else if(type == 'daily-record'){
+		res.redirect('add-daily-record-now')
+	}
+})
+
+router.post('/incidents', (req, res, next) => {
+	if(req.session.data['incidents'] == 'yes'){
+		res.redirect('incidents-detail')
+	} else {
+		res.redirect('action')
 	}
 })
 

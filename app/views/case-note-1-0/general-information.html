@@ -1,0 +1,44 @@
+
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{{ govukTextarea({
+				name: "note-content",
+				id: "note-content",
+				label:
+				{
+					text: "What happened today?",
+					classes: "govuk-label--xl",
+					isPageHeading: true
+				},
+				rows: "16",
+				hint:
+				{
+					html: "<p>Include what the child or young person did and any issues that happened throughout the day.</p><p>You might also want to include details about their general attitude, behaviour and attainment.</p>"
+				}
+			}) }}
+
+			<p class="govuk-!-margin-bottom-0">
+				{{govukButton({
+					text: "Save and continue",
+					href: "incidents"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}
