@@ -23,7 +23,7 @@
 				{
 					legend: 
 					{
-						text: "Search your CMS for a record",
+						text: "What type of note are you recording?",
 						isPageHeading: true,
 						classes: "govuk-fieldset__legend--xl"
 					}
@@ -35,27 +35,11 @@
 				items: [
 				{
 					value: "a",
-					text: "Child A",
-					hint:
-					{
-						text: "Born 23 January 2010 (x years old)"
-					}
+					text: "Daily Record"
 				},
 				{
 					value: "b",
-					text: "Child B",
-					hint:
-					{
-						text: "Born 1 August 2016 (x years old)"
-					}
-				},
-				{
-					value: "c",
-					text: "Child C",
-					hint:
-					{
-						text: "Born 3 March 2011 (x years old)"
-					}
+					text: "Case Note"
 				}
 				]
 			}) }}
@@ -63,7 +47,7 @@
 			<p>
 				{{govukButton({
 					text: "Save and continue",
-					href: "type-of-contact"
+					href: "contact-date"
 				})}}
 			</p>
 		</form>

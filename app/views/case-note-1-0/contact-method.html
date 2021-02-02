@@ -17,13 +17,13 @@
 	<div class="govuk-grid-column-two-thirds">
 		<form method="post">
 			{{ govukRadios({
-				idPrefix: "existing-new",
-				name: "existing-new",
+				idPrefix: "contact-method",
+				name: "contact-method",
 				fieldset: 
 				{
 					legend: 
 					{
-						text: "Search your CMS for a record",
+						text: "How was contact made?",
 						isPageHeading: true,
 						classes: "govuk-fieldset__legend--xl"
 					}
@@ -34,36 +34,27 @@
 				},
 				items: [
 				{
-					value: "a",
-					text: "Child A",
-					hint:
-					{
-						text: "Born 23 January 2010 (x years old)"
-					}
+					value: "telephone-in",
+					text: "Telephone call (in)"
 				},
 				{
-					value: "b",
-					text: "Child B",
-					hint:
-					{
-						text: "Born 1 August 2016 (x years old)"
-					}
+					value: "telephone-out",
+					text: "Telephone call (out)"
 				},
 				{
-					value: "c",
-					text: "Child C",
-					hint:
-					{
-						text: "Born 3 March 2011 (x years old)"
-					}
+					value: "visit-scheduled",
+					text: "Visit (scheduled)"
+				},
+				{
+					value: "visit-not-scheduled",
+					text: "Visit (not scheduled)"
 				}
 				]
 			}) }}
 
 			<p>
 				{{govukButton({
-					text: "Save and continue",
-					href: "type-of-contact"
+					text: "Save and continue"
 				})}}
 			</p>
 		</form>

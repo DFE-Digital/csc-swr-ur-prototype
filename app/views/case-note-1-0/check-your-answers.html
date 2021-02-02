@@ -1,0 +1,203 @@
+
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+			Review case note details for [[name]]
+		</h1>
+
+		{{ govukSummaryList({
+			classes: 'govuk-!-margin-bottom-6',
+			rows: [
+			{
+				key:
+				{
+					text: "Contact date"
+				},
+				value:
+				{
+					text: "a"
+				},
+				actions:
+				{
+					items: [
+					{
+						href: "training-location?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			},
+			{
+				key:
+				{
+					text: "Contact time"
+				},
+				value:
+				{
+					text: "a"
+				},
+				actions:
+				{
+					items: [
+					{
+						href: "how-many-apprentices?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			},
+			{
+				key:
+				{
+					text: "Type of contact"
+				},
+				value:
+				{
+					text: "a"
+				},
+				actions:
+				{
+					items: [
+					{
+						href: "start-date?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			},
+			{
+				key:
+				{
+					text: "Method of contact"
+				},
+				value:
+				{
+					text: "a"
+				},
+				actions:
+				{
+					items: [
+					{
+						href: "recruitment-required?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			},
+			{
+				key:
+				{
+					text: "Reason for contact"
+				},
+				value:
+				{
+					text: "s"
+				},
+				actions:
+				{
+					items: [
+					{
+						href: "organisation-name?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			},
+			{
+				key:
+				{
+					text: "Detailed notes"
+				},
+				value:
+				{
+					html: "a"
+				},
+				actions:
+				{
+					items: [
+					{
+						href: "contact-details?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			},
+			{
+				key:
+				{
+					text: "Analysis of information"
+				},
+				value:
+				{
+					html: "a"
+				},
+				actions:
+				{
+					items: [
+					{
+						href: "contact-details?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			},
+			{
+				key:
+				{
+					text: "Action"
+				},
+				value:
+				{
+					html: "a"
+				},
+				actions:
+				{
+					items: [
+					{
+						href: "contact-details?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			}
+			]
+		}) }}
+
+		<h2 class="govuk-heading-m govuk-!-margin-top-8">
+			Now confirm and send to your system
+		</h2>		
+
+		<p>
+			If you've added all the information required, you should confirm and send the case note to your Local authority system.
+		</p>
+
+		<p>
+			{{govukButton({
+				text: "Confirm and send"
+			})}}
+		</p>
+	</div>
+</div>
+{% endblock %}
