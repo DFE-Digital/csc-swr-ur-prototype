@@ -52,6 +52,14 @@ router.post('/mental-health-concerns', (req, res, next) => {
 	}
 })
 
+router.post('/medication', (req, res, next) => {
+	if(req.session.data['medication'] == 'yes'){
+		res.redirect('medication-detail')
+	} else {
+		res.redirect('check-your-answers')
+	}
+})
+
 router.post('/contact-method', (req, res, next) => {
 	if(req.session.data['contact-method'] == 'visit-not-scheduled'){
 		res.redirect('visit-time-entry')
