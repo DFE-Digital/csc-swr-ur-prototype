@@ -21,21 +21,26 @@
 				id: "note-content",
 				label:
 				{
-					text: "Add details about any incidents",
+					text: "Add details of any mental health concerns identified",
 					classes: "govuk-label--xl",
 					isPageHeading: true
 				},
 				rows: "16",
 				hint:
 				{
-					html: "You should include details of specific incidents as well as the reference for any related forms that were generated."
+					text: ''
 				}
+			}) }}
+
+			{{ govukWarningText({
+				text: "You must report any mental health issues captured in a Daily Record to management.",
+				iconFallbackText: "Warning"
 			}) }}
 
 			<p class="govuk-!-margin-bottom-0">
 				{{govukButton({
 					text: "Save and continue",
-					href: "checks-carried-out"
+					href: "wellbeing"
 				})}}
 			</p>
 		</form>

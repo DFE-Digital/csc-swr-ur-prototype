@@ -16,26 +16,37 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 		<form method="post">
-			{{ govukTextarea({
-				name: "note-content",
-				id: "note-content",
-				label:
+			{{ govukRadios({
+				idPrefix: "mental-health-concerns",
+				name: "mental-health-concerns",
+				fieldset: 
 				{
-					text: "Add details about any incidents",
-					classes: "govuk-label--xl",
-					isPageHeading: true
+					legend: 
+					{
+						text: "Were any mental health concerns identified?",
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend--xl"
+					}
 				},
-				rows: "16",
-				hint:
+				hint: 
 				{
-					html: "You should include details of specific incidents as well as the reference for any related forms that were generated."
+					text: ""
+				},
+				items: [
+				{
+					value: "yes",
+					text: "Yes"
+				},
+				{
+					value: "no",
+					text: "No"
 				}
+				]
 			}) }}
 
 			<p class="govuk-!-margin-bottom-0">
 				{{govukButton({
-					text: "Save and continue",
-					href: "checks-carried-out"
+					text: "Save and continue"
 				})}}
 			</p>
 		</form>

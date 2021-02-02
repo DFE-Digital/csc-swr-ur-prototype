@@ -40,7 +40,15 @@ router.post('/incidents', (req, res, next) => {
 	if(req.session.data['incidents'] == 'yes'){
 		res.redirect('incidents-detail')
 	} else {
-		res.redirect('action')
+		res.redirect('checks-carried-out')
+	}
+})
+
+router.post('/mental-health-concerns', (req, res, next) => {
+	if(req.session.data['mental-health-concerns'] == 'yes'){
+		res.redirect('mental-health-concerns-detail')
+	} else {
+		res.redirect('wellbeing')
 	}
 })
 
