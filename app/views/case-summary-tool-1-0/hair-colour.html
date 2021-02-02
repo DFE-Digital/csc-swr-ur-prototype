@@ -1,0 +1,68 @@
+
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{{ govukRadios({
+				idPrefix: "existing-new",
+				name: "existing-new",
+				fieldset: 
+				{
+					legend: 
+					{
+						text: "What hair colour does the child or young person have?",
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend--xl"
+					}
+				},
+				hint: 
+				{
+					text: ""
+				},
+				items: [
+				{
+					value: "yes",
+					text: "Brown"
+				},
+				{
+					value: "no",
+					text: "Black"
+				},
+				{
+					value: "no",
+					text: "Blonde"
+				},
+				{
+					value: "no",
+					text: "Red"
+				},
+				{
+					value: "no",
+					text: "Other"
+				}
+				]
+			}) }}
+
+			<p>
+				{{govukButton({
+					text: "Continue",
+					href: "ethnic-group"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

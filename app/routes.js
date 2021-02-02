@@ -15,4 +15,10 @@ router.use(/\/case-note-([0-9]+)-([0-9]+)/, (req, res, next) => {
 	require(`./views/case-note-${req.params[0]}-${req.params[1]}/routes`)(req, res, next);
 })
 
+router.use(/\/case-summary-tool-([0-9]+)-([0-9]+)/, (req, res, next) => {
+	req.version = req.originalUrl.split('/')[1]
+
+	require(`./views/case-summary-tool-${req.params[0]}-${req.params[1]}/routes`)(req, res, next);
+})
+
 module.exports = router
