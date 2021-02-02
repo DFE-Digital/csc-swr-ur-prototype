@@ -16,6 +16,14 @@ router.get('/', (req, res, next) => {
 	res.redirect(`/${req.version}/start`)
 })
 
+router.post('/type-of-contact', (req, res, next) => {
+	if(req.session.data['type-of-contact'] == 'case-note'){
+		res.redirect('contact-date')
+	} else {
+		res.redirect('not-built-yet')
+	}
+})
+
 router.post('/contact-method', (req, res, next) => {
 	if(req.session.data['contact-method'] == 'visit-not-scheduled'){
 		res.redirect('visit-time-entry')

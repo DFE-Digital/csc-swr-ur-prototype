@@ -17,8 +17,8 @@
 	<div class="govuk-grid-column-two-thirds">
 		<form method="post">
 			{{ govukRadios({
-				idPrefix: "existing-new",
-				name: "existing-new",
+				idPrefix: "type-of-contact",
+				name: "type-of-contact",
 				fieldset: 
 				{
 					legend: 
@@ -34,20 +34,23 @@
 				},
 				items: [
 				{
-					value: "a",
+					value: "daily-record",
 					text: "Daily Record"
 				},
 				{
-					value: "b",
+					value: "case-note",
 					text: "Case Note"
+				},
+				{
+					value: "missing",
+					text: "Missing child or young person"
 				}
 				]
 			}) }}
 
 			<p>
 				{{govukButton({
-					text: "Save and continue",
-					href: "contact-date"
+					text: "Save and continue"
 				})}}
 			</p>
 		</form>
