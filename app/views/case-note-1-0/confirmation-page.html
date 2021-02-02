@@ -19,19 +19,25 @@ html: 'This service is being used for research only.'
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 		{{ govukPanel({
-			titleText: "We've registered your interest",
-			html: "Business admin, Level: 2"
+			titleText: "We've sent the case note to your Local authority"
 		}) }}
 
-		<p class="govuk-body">We have sent you a confirmation email.</p>
+		<!-- <p class="govuk-body">We have sent you a confirmation email.</p> -->
 
-		<h2 class="govuk-heading-m">What happens next</h2>
+		<h2 class="govuk-heading-m govuk-!-margin-top-8">What happens next</h2>
 
 		<p class="govuk-body">
-			Training providers can view your anonymised request, along with those from other employers.
+			You can...
 		</p>
 		<p class="govuk-body">
-			You'll receive a notification email if a training provider tells us that they can deliver your training.
+			We will...
+		</p>
+
+		<p class="govuk-body govuk-!-margin-top-6">
+			{{govukButton({
+				text: "Record another case note",
+				href: "start"
+			})}}
 		</p>
 
 		<p class="govuk-body">
