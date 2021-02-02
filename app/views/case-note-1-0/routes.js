@@ -32,7 +32,7 @@ router.post('/contact-time', (req, res, next) => {
 	if(type == 'case-note'){
 		res.redirect('contact-method')
 	} else if(type == 'daily-record'){
-		res.redirect('add-daily-record-now')
+		res.redirect('general-information')
 	}
 })
 
