@@ -16,24 +16,6 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 		<form method="post">
-			{% set notesInputHtml %}
-			{{ govukInput({
-				label:
-				{
-					text: "Enter secure code",
-					isPageHeading: false
-				},
-				classes: "govuk-input--width-20",
-				hint:
-				{
-					text: ""
-				},
-				id: "notes-id",
-				name: "notes-id",
-				spellcheck: false
-			}) }}
-			{% endset %}
-
 			{{ govukRadios({
 				idPrefix: "existing-new",
 				name: "existing-new",
@@ -41,7 +23,7 @@
 				{
 					legend: 
 					{
-						text: "Are you starting a new assessment visit?",
+						text: "Search your CMS for a record",
 						isPageHeading: true,
 						classes: "govuk-fieldset__legend--xl"
 					}
@@ -52,15 +34,27 @@
 				},
 				items: [
 				{
-					value: "yes",
-					text: "Yes"
+					value: "a",
+					text: "Child A",
+					hint:
+					{
+						text: "Born 23 January 2010 (x years old)"
+					}
 				},
 				{
-					value: "no",
-					text: "No, I need to access existing notes",
-					conditional:
+					value: "b",
+					text: "Child B",
+					hint:
 					{
-						html: notesInputHtml
+						text: "Born 1 August 2016 (x years old)"
+					}
+				},
+				{
+					value: "c",
+					text: "Child C",
+					hint:
+					{
+						text: "Born 3 March 2011 (x years old)"
 					}
 				}
 				]
@@ -68,8 +62,8 @@
 
 			<p>
 				{{govukButton({
-					text: "Continue",
-					href: "email-address"
+					text: "Search",
+					href: "search-results"
 				})}}
 			</p>
 		</form>
