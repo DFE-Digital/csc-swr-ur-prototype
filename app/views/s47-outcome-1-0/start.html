@@ -1,0 +1,37 @@
+
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+			{{serviceName}}
+		</h1>
+
+		<p class="govuk-body-l">
+			Social workers can use this service to record the outcome of a Section 47 enquiry.
+		</p>
+
+		<p>
+			You must use your local authority email address to access this service.
+		</p>
+
+		<p>
+			You will only be able to use this service if your Local authority is part of this Alpha.
+		</p>
+
+		<p>
+			{{govukButton({
+				text: "Start now",
+				href: "name",
+				isStartButton: true
+			})}}
+		</p>
+	</div>
+</div>
+{% endblock %}

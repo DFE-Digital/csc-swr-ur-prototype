@@ -3,46 +3,94 @@
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
-  tag:
-  {
-    text: "Alpha"
-  },
-  html: 'This service is being used for research only.'
+	tag:
+	{
+		text: "Alpha"
+	},
+	html: 'This service is being used for research only.'
 }) }}
 {% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-      {{serviceName}}
-    </h1>
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+			{{serviceName}}
+		</h1>
 
-    <p class="govuk-body-l govuk-!-margin-bottom-8">
-      Ideas for how we might help social workers spend more time doing high value tasks.
-    </p>
+		<p class="govuk-body-l govuk-!-margin-bottom-8">
+			Ideas for how we might help social workers spend more time doing high value tasks.
+		</p>
 
-    <h2 class="govuk-heading-l govuk-!-margin-top-8 govuk-!-margin-bottom-3">
-      Sketches and ideas
-    </h2>
-    <h3 class="govuk-heading-m govuk-!-margin-bottom-2">
-      <a href="notes-tool-1-0">Notes tool version 1-0</a>
-      <span class="govuk-caption-m">20 January 2021</span>
-    </h3>
-    <p>
-      First sketches.
-    </p>
-    <ul class="govuk-list govuk-list--bullet">
-      <li>
-        Basic authentication flow
-      </li>
-      <li>
-        Assessment notes main page
-      </li>
-      <li>
-        Example page for creating a written note
-      </li>
-    </ul>
-  </div>
+		<h2 class="govuk-heading-l govuk-!-margin-top-8 govuk-!-margin-bottom-3">
+			Sketches and ideas
+		</h2>
+		<h3 class="govuk-heading-m govuk-!-margin-bottom-2">
+			<a href="notes-tool-1-0">Notes tool version 1-0</a>
+			<span class="govuk-caption-m">20 January 2021</span>
+		</h3>
+		<p>
+			First sketches.
+		</p>
+		<ul class="govuk-list govuk-list--bullet">
+			<li>
+				Basic authentication flow
+			</li>
+			<li>
+				Assessment notes main page
+			</li>
+			<li>
+				Example page for creating a written note
+			</li>
+		</ul>
 
-  {% endblock %}
+
+		<h3 class="govuk-heading-m govuk-!-margin-bottom-2">
+			<a href="case-summary-tool-1-0">Case summary tool 1-0</a>
+			<span class="govuk-caption-m">2 February 2021</span>
+		</h3>
+		<p>
+			First sketches.
+		</p>
+		<ul class="govuk-list govuk-list--bullet">
+			<li>
+				Basic journey flow
+			</li>
+		</ul>
+
+
+		<h3 class="govuk-heading-m govuk-!-margin-bottom-2">
+			<a href="case-note-1-0">Record a case note 1-0</a>
+			<span class="govuk-caption-m">2 February 2021</span>
+		</h3>
+		<p>
+			First sketches.
+		</p>
+		<ul class="govuk-list govuk-list--bullet">
+			<li>
+				Case note basic journey (needs content)
+			</li>
+			<li>
+				Daily record journey
+			</li>
+		</ul>
+
+
+		<h3 class="govuk-heading-m govuk-!-margin-bottom-2">
+			<a href="s47-outcome-1-0">Section 47 tool 1-0</a>
+			<span class="govuk-caption-m">3 February 2021</span>
+		</h3>
+		<p>
+			First sketches.
+		</p>
+		<ul class="govuk-list govuk-list--bullet">
+			<li>
+				
+			</li>
+			<li>
+				
+			</li>
+		</ul>
+	</div>
+
+	{% endblock %}
