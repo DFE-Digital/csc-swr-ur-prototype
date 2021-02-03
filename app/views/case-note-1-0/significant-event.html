@@ -16,26 +16,38 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 		<form method="post">
-			{{ govukTextarea({
-				name: "note-content",
-				id: "note-content",
-				label:
+			{{ govukRadios({
+				idPrefix: "medication",
+				name: "medication",
+				fieldset: 
 				{
-					text: "What actions are required? (optional)",
-					classes: "govuk-label--xl",
-					isPageHeading: true
+					legend: 
+					{
+						text: "Should this be marked as a signficant event?",
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend--xl"
+					}
 				},
-				rows: "16",
-				hint:
+				hint: 
 				{
-					text: "Include any follow up requirements. For example, calling back with information, or responding to a complaint."
+					text: ""
+				},
+				items: [
+				{
+					value: "yes",
+					text: "Yes"
+				},
+				{
+					value: "no",
+					text: "No"
 				}
+				]
 			}) }}
 
 			<p class="govuk-!-margin-bottom-0">
 				{{govukButton({
 					text: "Save and continue",
-					href: "significant-event"
+					href: "check-your-answers"
 				})}}
 			</p>
 		</form>
