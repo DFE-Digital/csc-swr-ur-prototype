@@ -1,0 +1,44 @@
+
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{{ govukTextarea({
+				name: "note-content",
+				id: "note-content",
+				label:
+				{
+					text: "What checks were made during the day?",
+					classes: "govuk-label--xl",
+					isPageHeading: true
+				},
+				rows: "16",
+				hint:
+				{
+					html: "<p>Include information about all checks carried out throughout the day for this child or young person.</p><p>For example, general checks such as bedroom or laundry checks, curfew checks or welfare checks."
+				}
+			}) }}
+
+			<p class="govuk-!-margin-bottom-0">
+				{{govukButton({
+					text: "Save and continue",
+					href: "mental-health-concerns"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

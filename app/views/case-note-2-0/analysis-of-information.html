@@ -1,0 +1,44 @@
+
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{{ govukTextarea({
+				name: "note-content",
+				id: "note-content",
+				label:
+				{
+					text: "Your analysis (optional)",
+					classes: "govuk-label--xl",
+					isPageHeading: true
+				},
+				rows: "16",
+				hint:
+				{
+					html: "Include anything significant about information you've recorded."
+				}
+			}) }}
+
+			<p class="govuk-!-margin-bottom-0">
+				{{govukButton({
+					text: "Save and continue",
+					href: "action"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,81 @@
+
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+	{% include './includes/phase-banner--alpha.html' %}
+
+	{{ govukBackLink({
+		"text": "Back",
+		"href": "javascript: window.history.go(-1)"
+	}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+	<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+	<form method="post">
+	{% set contactDateHtml %}
+
+	{{ govukDateInput({
+		id: "contact-date",
+		namePrefix: "contact-date",
+		fieldset:
+		{
+			legend:
+			{
+				text: "Enter a date",
+				isPageHeading: true,
+				classes: "govuk-fieldset__legend--s"
+			}
+		},
+		hint:
+		{
+			text: "For example, 12 11 2007"
+		}
+	}) }}
+	{% endset %}
+
+	{{ govukRadios({
+		idPrefix: "contact-date-type",
+		name: "contact-date-type",
+		fieldset: 
+		{
+			legend: 
+			{
+				text: "When was this contact?",
+				isPageHeading: true,
+				classes: "govuk-fieldset__legend--xl"
+			}
+		},
+		hint: 
+		{
+			text: ""
+		},
+		items: [
+		{
+			value: "a",
+			text: "Today"
+		},
+		{
+			value: "b",
+			text: "Before today",
+			conditional: 
+			{
+				html: contactDateHtml
+			}
+		}
+		]
+	}) }}
+
+	<p>
+	{{govukButton({
+		text: "Save and continue",
+		href: "contact-time"
+	})}}
+	</p>
+	</form>
+	</div>
+	</div>
+{% endblock %}

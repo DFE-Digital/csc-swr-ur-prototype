@@ -1,0 +1,72 @@
+
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{{ govukRadios({
+				idPrefix: "family-member",
+				name: "family-member",
+				fieldset: 
+				{
+					legend: 
+					{
+						text: "Select a family member",
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend--xl"
+					}
+				},
+				hint: 
+				{
+					text: "You can add more family members later."
+				},
+				items: [
+				{
+					value: "a",
+					text: "Family member A",
+					hint:
+					{
+						text: "Sister, 2 years old"
+					}
+				},
+				{
+					value: "b",
+					text: "Family member B",
+					hint:
+					{
+						text: "Mum, 38 years old"
+					}
+				},
+				{
+					value: "c",
+					text: "Family member C",
+					hint:
+					{
+						text: "Dad, 38 years old"
+					}
+				}
+				]
+			}) }}
+
+			<p>
+				{{govukButton({
+					text: "Save and continue",
+					href: "family-members"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{{ govukTextarea({
+				name: "note-content",
+				id: "note-content",
+				label:
+				{
+					text: "What was the reason for this contact?",
+					classes: "govuk-label--xl",
+					isPageHeading: true
+				},
+				rows: "16",
+				hint:
+				{
+					text: "Make sure you include the reason for contact and the person who made contact."
+				}
+			}) }}
+
+			<p class="govuk-!-margin-bottom-0">
+				{{govukButton({
+					text: "Save and continue",
+					href: "detailed-notes"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

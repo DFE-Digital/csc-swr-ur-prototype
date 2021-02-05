@@ -1,0 +1,48 @@
+
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{{ govukTextarea({
+				name: "note-content",
+				id: "note-content",
+				label:
+				{
+					text: "Add any wellbeing information (optional)",
+					classes: "govuk-label--xl",
+					isPageHeading: true
+				},
+				rows: "16",
+				hint:
+				{
+					html: '<p>Include any information about any wellbeing concerns.</p><p>You should also include details of the child or young person’s:</p>
+					<ul class="govuk-list govuk-list--bullet">
+						<li>dietary monitoring requirements</li>
+						<li>sleep pattern monitoring requirements</li>
+					</ul>'
+				}
+			}) }}
+
+			<p class="govuk-!-margin-bottom-0">
+				{{govukButton({
+					text: "Save and continue",
+					href: "medication"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

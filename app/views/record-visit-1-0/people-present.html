@@ -1,0 +1,40 @@
+
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			<h1 class="govuk-heading-xl">
+				Who was present at this visit?
+			</h1>
+			
+			<p>
+				We'll save any observations to 
+			</p>
+
+			<p>
+				You've not added anyone yet.
+			</p>
+
+			<p>
+				{{govukButton({
+					text: "Add a person",
+					href: "search-for-record"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

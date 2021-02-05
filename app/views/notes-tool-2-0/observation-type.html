@@ -1,0 +1,67 @@
+
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{{ govukRadios({
+				idPrefix: "observation-type",
+				name: "observation-type",
+				fieldset: 
+				{
+					legend: 
+					{
+						text: "What type of observation do you want to add?",
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend--xl"
+					}
+				},
+				hint: 
+				{
+					text: ""
+				},
+				items: [
+				{
+					value: "written-note",
+					text: "Written note"
+				},
+				{
+					value: "photo",
+					text: "Photo"
+				},
+				{
+					value: "video",
+					text: "Video"
+				},
+				{
+					value: "audio",
+					text: "Audio recording"
+				},
+				{
+					value: "document",
+					text: "Document"
+				}
+				]
+			}) }}
+
+			<p>
+				{{govukButton({
+					text: "Continue"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

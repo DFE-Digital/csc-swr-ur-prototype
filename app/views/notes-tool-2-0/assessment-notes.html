@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
+			[[date]] observations
+		</h1>
+		<p class="govuk-!-margin-bottom-9">
+			<a href="not-built-yet" class="govuk-link--no-visited-state">Rename<span class="govuk-visually-hidden"> these assessment visit notes</span></a>
+		</p>
+
+		{% if data['written-notes'].length %}
+		<table class="govuk-table">
+			<tbody class="govuk-table__body">
+				{% for note in data['written-notes'] %}
+				<tr class="govuk-table__row">
+					<td class="govuk-table__cell"><a class="govuk-link--no-visited-state" href="written-note?id={{note.id}}">{{note.text | truncate(25) }}</a></td>
+					<td class="govuk-table__cell">{{note.timestamp | formatDate('DD MMMM YYYY')}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		{% else %}
+		<p>
+			You have not added any observations yet.
+		</p>
+		{% endif %}
+		<form method="post" action="create-written-note">
+			<p>
+				{{govukButton({
+					text: "Add an observation",
+					classes: "govuk-button--secondary",
+					href: "observation-type"
+				})}}
+			</p>
+		</form>
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+		<div class="govuk-!-padding-6 govuk-!-margin-bottom-8" style="background-color: #e5e5e5">
+			<h3 class="govuk-heading-m">
+				Download these assessment notes
+			</h3>
+
+			<p>
+				When you've finished adding assessment notes, you can download them as a single file.
+			</p>
+
+			<p>
+				{{govukButton({
+					html: 'Download<span class="govuk-visually-hidden"> assessment notes</span>',
+					href: "not-built-yet",
+					classes: "govuk-!-margin-bottom-0"
+				})}}
+			</p>
+
+			<p>
+				<a href="not-built-yet" class="govuk-link--no-visited-state">Preview assessment notes</a>
+			</p>
+		</div>
+
+		<h3 class="govuk-heading-s">
+			Change or add to these notes in the future
+		</h3>
+
+		<p>
+			You can access these notes using this code:
+		</p>
+
+		<p class="govuk-inset-text">
+			<strong><code>16WT-8JJS-87D6-WP34</code></strong>
+		</p>
+
+		<p>
+			You'll need to confirm your identity each time you access this page using your Local authority email address.
+		</p>
+	</div>
+</div>
+{% endblock %}

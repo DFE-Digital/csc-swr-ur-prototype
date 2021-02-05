@@ -1,0 +1,63 @@
+
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{{ govukRadios({
+				idPrefix: "contact-method",
+				name: "contact-method",
+				fieldset: 
+				{
+					legend: 
+					{
+						text: "How was contact made?",
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend--xl"
+					}
+				},
+				hint: 
+				{
+					text: ""
+				},
+				items: [
+				{
+					value: "telephone-in",
+					text: "Telephone call (in)"
+				},
+				{
+					value: "telephone-out",
+					text: "Telephone call (out)"
+				},
+				{
+					value: "visit-scheduled",
+					text: "Visit (scheduled)"
+				},
+				{
+					value: "visit-not-scheduled",
+					text: "Visit (not scheduled)"
+				}
+				]
+			}) }}
+
+			<p>
+				{{govukButton({
+					text: "Save and continue"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}
