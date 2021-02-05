@@ -52,6 +52,14 @@ router.post('/family-members', (req, res, next) => {
 	}
 })
 
+router.post('/attachments', (req, res, next) => {
+	if(req.session.data['attach-files'] == 'yes'){
+		res.redirect('new-media-file')
+	} else {
+		res.redirect('significant-event')
+	}
+})
+
 router.post('/mental-health-concerns', (req, res, next) => {
 	if(req.session.data['mental-health-concerns'] == 'yes'){
 		res.redirect('mental-health-concerns-detail')

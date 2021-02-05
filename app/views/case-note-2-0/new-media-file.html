@@ -19,7 +19,7 @@
 			{% call govukFieldset({
 				legend:
 				{
-					text: "Add an image or video",
+					text: "Upload a photo, video or other files",
 					classes: "govuk-fieldset__legend--xl",
 					isPageHeading: true
 				}
@@ -35,10 +35,18 @@
 			}) }}
 			{% endcall %}
 
+			<p>
+				Your uploaded files will be stored securely.
+			</p>
+
+			<p>
+				You'll be able to access your uploaded files using a secure link, which we'll add to the finished case note.
+			</p>
+
 			<p class="govuk-!-margin-bottom-0">
 				{{govukButton({
 					text: "Upload",
-					href: "not-built-yet"
+					href: "file-upload-complete"
 				})}}
 			</p>
 		</form>

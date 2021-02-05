@@ -17,13 +17,13 @@
 	<div class="govuk-grid-column-two-thirds">
 		<form method="post">
 			{{ govukRadios({
-				idPrefix: "medication",
-				name: "medication",
+				idPrefix: "attach-files",
+				name: "attach-files",
 				fieldset: 
 				{
 					legend: 
 					{
-						text: "Should this be marked as a signficant event?",
+						text: "Do you want to attach any photos or other files?",
 						isPageHeading: true,
 						classes: "govuk-fieldset__legend--xl"
 					}
@@ -44,10 +44,9 @@
 				]
 			}) }}
 
-			<p class="govuk-!-margin-bottom-0">
+			<p>
 				{{govukButton({
-					text: "Save and continue",
-					href: "attachments"
+					text: "Save and continue"
 				})}}
 			</p>
 		</form>
