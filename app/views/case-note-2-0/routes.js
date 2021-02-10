@@ -56,7 +56,7 @@ router.post('/attachments', (req, res, next) => {
 	if(req.session.data['attach-files'] == 'yes'){
 		res.redirect('new-media-file')
 	} else {
-		res.redirect('significant-event')
+		res.redirect('check-your-answers')
 	}
 })
 
