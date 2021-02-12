@@ -8,15 +8,12 @@
 
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
-		<h1 class="govuk-heading-xl govuk-!-margin-bottom-2">
-			{{data['notes-title'] or "Assessment visit notes"}}
+		<h1 class="govuk-heading-xl">
+			{{data['case']['title'] or "Child A"}}
 		</h1>
-		<p class="govuk-!-margin-bottom-9">
-			<a href="not-built-yet" class="govuk-link--no-visited-state">Rename<span class="govuk-visually-hidden"> these assessment visit notes</span></a>
-		</p>
 
 		<h2 class="govuk-heading-l">
-			Written notes
+			Events
 		</h2>
 
 		{% if data['written-notes'].length %}
@@ -33,85 +30,21 @@
 
 		{% else %}
 		<p>
-			You have not added any written notes yet.
+			You have not added any events yet.
 		</p>
 		{% endif %}
 		<form method="post" action="create-written-note">
 			<p>
 				{{govukButton({
-					text: "Add written note",
-					classes: "govuk-button--secondary"
+					text: "Add an event",
+					classes: "govuk-button--secondary",
+					href: "event-type"
 				})}}
 			</p>
 		</form>
-
-		<h2 class="govuk-heading-l">
-			Audio recordings
-		</h2>
-		<p>
-			You have not added any audio recordings yet.
-		</p>
-		<p>
-			{{govukButton({
-				text: "Add audio recording",
-				href: "not-built-yet",
-				classes: "govuk-button--secondary"
-			})}}
-		</p>
-
-		<h2 class="govuk-heading-l">
-			Images and videos
-		</h2>
-		<p>
-			You have not added any images or videos yet.
-		</p>
-		<p>
-			{{govukButton({
-				text: "Add an image or video",
-				href: "new-media-file",
-				classes: "govuk-button--secondary"
-			})}}
-		</p>
 	</div>
 
 	<div class="govuk-grid-column-one-third">
-		<div class="govuk-!-padding-6 govuk-!-margin-bottom-8" style="background-color: #e5e5e5">
-			<h3 class="govuk-heading-m">
-				Download these assessment notes
-			</h3>
-
-			<p>
-				When you've finished adding assessment notes, you can download them as a single file.
-			</p>
-
-			<p>
-				{{govukButton({
-					html: 'Download<span class="govuk-visually-hidden"> assessment notes</span>',
-					href: "not-built-yet",
-					classes: "govuk-!-margin-bottom-0"
-				})}}
-			</p>
-
-			<p>
-				<a href="not-built-yet" class="govuk-link--no-visited-state">Preview assessment notes</a>
-			</p>
-		</div>
-
-		<h3 class="govuk-heading-s">
-			Change or add to these notes in the future
-		</h3>
-
-		<p>
-			You can access these notes using this code:
-		</p>
-
-		<p class="govuk-inset-text">
-			<strong><code>16WT-8JJS-87D6-WP34</code></strong>
-		</p>
-
-		<p>
-			You'll need to confirm your identity each time you access this page using your Local authority email address.
-		</p>
 	</div>
 </div>
 {% endblock %}

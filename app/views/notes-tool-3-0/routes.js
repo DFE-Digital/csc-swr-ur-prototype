@@ -16,16 +16,6 @@ router.get('/', (req, res, next) => {
 	res.redirect(`/${req.version}/start`)
 })
 
-router.post('/type-of-contact', (req, res, next) => {
-	let type = req.session.data['type-of-contact']
-
-	if(type == 'case-note' || type == 'daily-record'){
-		res.redirect('contact-date')
-	} else {
-		res.redirect('not-built-yet')
-	}
-})
-
 router.post('/contact-time', (req, res, next) => {
 	let type = req.session.data['type-of-contact']
 
