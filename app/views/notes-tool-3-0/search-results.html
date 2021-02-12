@@ -1,0 +1,72 @@
+
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{{ govukRadios({
+				idPrefix: "existing-new",
+				name: "existing-new",
+				fieldset: 
+				{
+					legend: 
+					{
+						text: "Select a record",
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend--xl"
+					}
+				},
+				hint: 
+				{
+					text: "We'll create a case note for the record you select."
+				},
+				items: [
+				{
+					value: "a",
+					text: "Child A",
+					hint:
+					{
+						text: "Born 23 January 2010 (x years old)"
+					}
+				},
+				{
+					value: "b",
+					text: "Child B",
+					hint:
+					{
+						text: "Born 1 August 2016 (x years old)"
+					}
+				},
+				{
+					value: "c",
+					text: "Child C",
+					hint:
+					{
+						text: "Born 3 March 2011 (x years old)"
+					}
+				}
+				]
+			}) }}
+
+			<p>
+				{{govukButton({
+					text: "Save and continue",
+					href: "type-of-contact"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

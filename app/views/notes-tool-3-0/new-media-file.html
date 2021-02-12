@@ -1,0 +1,55 @@
+
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{% call govukFieldset({
+				legend:
+				{
+					text: "Upload a photo, video or other files",
+					classes: "govuk-fieldset__legend--xl",
+					isPageHeading: true
+				}
+			}) %}
+			{{ govukFileUpload({
+				id: "file-upload-1",
+				name: "file-upload-1",
+				label:
+				{
+					classes: "govuk-!-margin-top-6",
+					text: "Upload a file"
+				}
+			}) }}
+			{% endcall %}
+
+			<p>
+				Your uploaded files will be stored securely.
+			</p>
+
+			<p>
+				You'll be able to access your uploaded files using a secure link, which we'll add to the finished case note.
+			</p>
+
+			<p class="govuk-!-margin-bottom-0">
+				{{govukButton({
+					text: "Upload",
+					href: "file-upload-complete"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}
