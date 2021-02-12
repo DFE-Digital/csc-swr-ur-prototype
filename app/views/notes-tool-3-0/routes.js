@@ -30,7 +30,7 @@ router.post('/other-family-present', (req, res, next) => {
 	if(req.session.data['other-family-present'] == 'yes'){
 		res.redirect('add-family-member')
 	} else {
-		res.redirect('interview')
+		res.redirect('detailed-notes')
 	}
 })
 
@@ -38,7 +38,7 @@ router.post('/family-members', (req, res, next) => {
 	if(req.session.data['add-more-family'] == 'yes'){
 		res.redirect('add-family-member')
 	} else {
-		res.redirect('interview')
+		res.redirect('detailed-notes')
 	}
 })
 

@@ -16,21 +16,22 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 		<form method="post">
-			{{ govukRadios({
+			{{ govukCheckboxes({
 				idPrefix: "family-member",
 				name: "family-member",
+				classes: "govuk-checkboxes--small",
 				fieldset: 
 				{
 					legend: 
 					{
-						text: "Select a family member",
+						text: "Select all family members who were present",
 						isPageHeading: true,
 						classes: "govuk-fieldset__legend--xl"
 					}
 				},
 				hint: 
 				{
-					text: "You can add more family members later."
+					text: ""
 				},
 				items: [
 				{

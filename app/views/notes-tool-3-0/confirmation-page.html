@@ -20,28 +20,13 @@ html: 'This service is being used for research only.'
 	<div class="govuk-grid-column-two-thirds">
 		{{ govukPanel({
 			classes: "govuk-!-margin-bottom-8",
-			titleText: "We've sent this case note to your Local authority"
+			titleText: "We've saved this event to the case for 'Child A'"
 		}) }}
-
-		<!-- <p class="govuk-body">We have sent you a confirmation email.</p> -->
-
-		<h2 class="govuk-heading-m">
-			Accessing attached files
-		</h2>
-		<p>
-			You can access files attached to this case note using the following link:
-		</p>
-		<div class="govuk-inset-text govuk-!-font-size-16">
-			<code>social-work-case-note.service.gov.uk/393f-897a-sljd-as09</code>
-		</div>
-		<p>
-			You'll need to use your local authority email.
-		</p>
 
 		<p class="govuk-body govuk-!-margin-top-6">
 			{{govukButton({
-				text: "Record another case note",
-				href: "start"
+				text: "Return to case",
+				href: "assessment-notes?show-events=true"
 			})}}
 		</p>
 

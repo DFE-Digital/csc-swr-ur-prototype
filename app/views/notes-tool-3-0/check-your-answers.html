@@ -16,7 +16,7 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 		<h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
-			Review case note details for [[name]]
+			Review event details
 		</h1>
 
 		{{ govukSummaryList({
@@ -25,7 +25,7 @@
 			{
 				key:
 				{
-					text: "Contact date"
+					text: "Event date"
 				},
 				value:
 				{
@@ -45,7 +45,7 @@
 			{
 				key:
 				{
-					text: "Contact time"
+					text: "Event time"
 				},
 				value:
 				{
@@ -65,7 +65,7 @@
 			{
 				key:
 				{
-					text: "Type of contact"
+					text: "Type of event"
 				},
 				value:
 				{
@@ -85,17 +85,17 @@
 			{
 				key:
 				{
-					text: "Method of contact"
+					text: "Reason for contact"
 				},
 				value:
 				{
-					text: "a"
+					text: "s"
 				},
 				actions:
 				{
 					items: [
 					{
-						href: "recruitment-required?cya=true",
+						href: "organisation-name?cya=true",
 						text: "Change",
 						visuallyHiddenText: "name"
 					}
@@ -105,7 +105,7 @@
 			{
 				key:
 				{
-					text: "Reason for contact"
+					text: "Family present"
 				},
 				value:
 				{
@@ -186,16 +186,16 @@
 		}) }}
 
 		<h2 class="govuk-heading-m govuk-!-margin-top-8">
-			Now confirm and send to your system
+			Now confirm and save this event
 		</h2>		
 
 		<p>
-			If you've added all the information required, you should confirm and send the case note to your Local authority system.
+			If you've added all the information you need to, you should confirm and save the event to the case for 'Child A'.
 		</p>
 
 		<p>
 			{{govukButton({
-				text: "Confirm and send",
+				text: "Confirm and save event",
 				href: "confirmation-page"
 			})}}
 		</p>

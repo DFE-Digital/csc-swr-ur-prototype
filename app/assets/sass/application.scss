@@ -16,5 +16,7 @@ $govuk-assets-path: '/govuk/assets/';
 
 // Components that aren't in Frontend
 @import "components/cookie-banner";
+@import "patterns/hmcts-timeline";
+@import "patterns/hmrc-timeline";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
