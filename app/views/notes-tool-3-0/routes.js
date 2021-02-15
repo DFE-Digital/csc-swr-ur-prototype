@@ -84,7 +84,13 @@ router.post('/event-time', (req, res, next) => {
 	let time = req.session.data['event-time-hours'] + ":" + req.session.data['event-time-minutes'] + ":00"
 
 	// create the new datetime value by combining the date and time variables
-	let datetime = date + "T" + time
+	let datetime
+
+	if(req.session.data['event-time-hours'] == ''){
+		datetime = date
+	} else {
+		datetime = date + "T" + time	
+	}
 
 	// update the events array
 	updateEvent(id, 'datetime', datetime, req, res)
@@ -108,6 +114,11 @@ router.post('/family-members', (req, res, next) => {
 	if(req.session.data['add-more-family'] == 'yes'){
 		res.redirect('add-family-member')
 	} else {
+		let id = req.session.data['id']
+		let familyMembers = req.session.data['family-members']
+
+		updateEvent(id, 'family', familyMembers, req, res)
+
 		res.redirect('detailed-notes')
 	}
 })
