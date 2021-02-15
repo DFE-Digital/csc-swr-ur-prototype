@@ -171,4 +171,15 @@ router.post('/new-media-file', (req, res, next) => {
 	res.redirect('file-upload-complete')
 })
 
+router.post('/check-your-answers', (req, res, next) => {
+	req.session.data['events'].sort(function(a,b){
+		// Turn your strings into dates, and then subtract them
+		// to get a value that is either negative, positive, or zero.
+		return new Date(b.datetime) - new Date(a.datetime);
+	});
+
+
+	res.redirect('confirmation-page')
+})
+
 module.exports = router
