@@ -173,8 +173,7 @@ router.post('/new-media-file', (req, res, next) => {
 
 router.post('/check-your-answers', (req, res, next) => {
 	req.session.data['events'].sort(function(a,b){
-		// Turn your strings into dates, and then subtract them
-		// to get a value that is either negative, positive, or zero.
+		// https://stackoverflow.com/questions/10123953/how-to-sort-an-object-array-by-date-property
 		return new Date(b.datetime) - new Date(a.datetime);
 	});
 

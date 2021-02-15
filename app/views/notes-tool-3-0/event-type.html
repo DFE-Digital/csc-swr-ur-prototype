@@ -16,6 +16,19 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 		<form method="post">
+			{% set otherInput %}
+			{{ govukInput({
+				label:
+				{
+					text: "Event",
+					classes: "govuk-label--s",
+					isPageHeading: false
+				},
+				id: "other-event",
+				name: "other-event"
+			}) }}
+			{% endset %}
+
 			{{ govukRadios({
 				idPrefix: "event-type",
 				name: "event-type",
@@ -56,6 +69,14 @@
 				{
 					value: "Letter (in)",
 					text: "Letter (in)"
+				},
+				{
+					value: "Other",
+					text: "Other",
+					conditional:
+					{
+						html: otherInput
+					}
 				}
 				]
 			}) }}
