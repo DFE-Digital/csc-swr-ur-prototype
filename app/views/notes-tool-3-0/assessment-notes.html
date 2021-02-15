@@ -10,6 +10,9 @@
 	<div class="govuk-grid-column-two-thirds">
 		<h1 class="govuk-heading-xl">
 			{{data['child'] or "Child A"}}
+			<span class="govuk-caption-m">
+				Case: 70037619
+			</span>
 		</h1>
 
 		{% if data['events'].length or data['show-events'] == 'true' %}
