@@ -15,12 +15,11 @@
 			</span>
 		</h1>
 
-		{% if data['events'].length or data['show-events'] == 'true' %}
-		<form method="post" action="create-written-note">
+		{% if data['events'].length %}
+		<form method="post" action="create-event">
 			<p>
 				{{govukButton({
-					text: "Add an event",
-					href: "event-type"
+					text: "Add an event"
 				})}}
 			</p>
 		</form>
@@ -32,43 +31,27 @@
 			Events recorded so far
 		</h2>
 
-		{% if data['events'].length or data['show-events'] == 'true' %}
+		{% if data['events'].length %}
 		<ol class="hmrc-timeline">
+			{% for event in data['events'] %}
 			<li class="hmrc-timeline-event">
 				<h2 class="hmrc-timeline-event-title govuk-heading-m">
-					Home visit
+					{{event.type}}
 				</h2>
 				<span class="hmrc-timeline-event-meta govuk-body-s">
-					9 October 2020
+					{{event.datetime|formatDate('h:mma, DD MMMM YYYY')}}
 				</span>
 
 				<div class="hmrc-timeline-event-content">
 					<p>
-						Lorem ipsum nostrud in ut pariatur laborum elit consectetur laboris nulla in ut veniam irure non est pariatur.
+						{{event.analysis}}
 					</p>
 					<p>
-						<a href="event">View event</a>
+						<a href="event?id={{event.id}}">View event</a>
 					</p>
 				</div>
 			</li>
-
-			<li class="hmrc-timeline-event">
-				<h2 class="hmrc-timeline-event-title govuk-heading-m">
-					Telephone call (in)
-				</h2>
-				<span class="hmrc-timeline-event-meta govuk-body-s">
-					24 July 2020
-				</span>
-
-				<div class="hmrc-timeline-event-content">
-					<p>
-						Lorem ipsum nostrud in ut pariatur laborum elit consectetur laboris nulla in ut veniam irure non est pariatur.
-					</p>
-					<p>
-						<a href="#">View event</a>
-					</p>
-				</div>
-			</li>
+			{% endfor %}
 		</ol>
 
 		{% else %}
