@@ -118,7 +118,7 @@ router.post('/add-family-member', (req, res, next) => {
 })
 
 router.post('/family-members', (req, res, next) => {
-	if(req.session.data['add-more-family'] == 'yes'){
+	if(req.session.data['add-more-family'] == 'no'){
 		res.redirect('add-family-member')
 	} else {
 		let id = req.session.data['id']
