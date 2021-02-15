@@ -123,6 +123,33 @@ router.post('/family-members', (req, res, next) => {
 	}
 })
 
+router.post('/detailed-notes', (req, res, next) => {
+	let id = req.session.data['id']
+	let detailedNotes = req.session.data['detailed-notes']
+
+	updateEvent(id, 'detailed-notes', detailedNotes, req, res)
+
+	res.redirect('analysis-of-information')
+})
+
+router.post('/analysis-of-information', (req, res, next) => {
+	let id = req.session.data['id']
+	let analysis = req.session.data['analysis']
+
+	updateEvent(id, 'analysis', analysis, req, res)
+
+	res.redirect('action')
+})
+
+router.post('/action', (req, res, next) => {
+	let id = req.session.data['id']
+	let actions = req.session.data['actions']
+
+	updateEvent(id, 'actions', actions, req, res)
+
+	res.redirect('attachments')
+})
+
 router.post('/attachments', (req, res, next) => {
 	if(req.session.data['attach-files'] == 'yes'){
 		res.redirect('new-media-file')
@@ -135,30 +162,6 @@ router.post('/new-media-file', (req, res, next) => {
 	delete req.session.data['attach-files']
 
 	res.redirect('file-upload-complete')
-})
-
-router.post('/mental-health-concerns', (req, res, next) => {
-	if(req.session.data['mental-health-concerns'] == 'yes'){
-		res.redirect('mental-health-concerns-detail')
-	} else {
-		res.redirect('wellbeing')
-	}
-})
-
-router.post('/medication', (req, res, next) => {
-	if(req.session.data['medication'] == 'yes'){
-		res.redirect('medication-detail')
-	} else {
-		res.redirect('check-your-answers')
-	}
-})
-
-router.post('/contact-method', (req, res, next) => {
-	if(req.session.data['contact-method'] == 'visit-not-scheduled'){
-		res.redirect('visit-time-entry')
-	} else {
-		res.redirect('contact-reason')
-	}
 })
 
 module.exports = router
