@@ -21,16 +21,24 @@ router.post('/select-case', (req, res, next) => {
 	res.redirect('assessment-notes')
 })
 
-router.post('/event-type', (req, res, next) => {
+router.post('/create-event', (req, res, next) => {
 	let id = crypto.randomBytes(20).toString('hex');
 	req.session.data['id'] = id
 
 	let event = {
-		'id': id,
-		'type': req.session.data['event-type']
+		'id': id
 	}
 
 	req.session.data['events'].push(event)
+
+	res.redirect('event-type')
+})
+
+router.post('/event-type', (req, res, next) => {
+	let id = req.session.data['id']
+	let type = req.session.data['event-type']
+
+	updateEvent(id, 'type', type, req, res)
 
 	res.redirect('event-date')
 })
@@ -47,13 +55,15 @@ function updateEvent(id, property, value, req, res) {
 router.post('/event-date', (req, res, next) => {
 	let id = req.session.data['id']
 
+	let format = "YYYY-MM-DDTHH:mm"
+
 	if(req.session.data['event-date-type'] == 'today'){
-		let date = new Date()
+		let date = moment().format(format)
 		
 		updateEvent(id, 'datetime', date, req, res)
 	} else {
-		let dateString = req.session.data['other-date-year'] + "-" + req.session.data['other-date-month'] + "-" + req.session.data['other-date-day'] + "T00:00:00"
-		let date = new Date(dateString)
+		let dateString = req.session.data['other-date-year'] + "-" + req.session.data['other-date-month'] + "-" + req.session.data['other-date-day']
+		let date = moment(dateString, "YYYY-MM-DD").format(format)
 
 		updateEvent(id, 'datetime', date, req, res)
 	}
