@@ -20,5 +20,17 @@ Example usage:
 module.exports = {
 
   // Insert values here
-
+  "events":
+  [
+  {
+  	"id": "1",
+  	"type": "Test type",
+  	"datetime": "2021-02-15T00:00:00",
+  	"analysis": "Test analysis",
+  	"actions": "Test actions",
+  	"notes": "Test notes",
+  	"family-members": [],
+  	"files": []
+  }
+  ]
 }
