@@ -19,8 +19,8 @@
 			{% set contactDateHtml %}
 
 			{{ govukDateInput({
-				id: "event-date",
-				namePrefix: "event-date",
+				id: "other-date",
+				namePrefix: "other-date",
 				fieldset:
 				{
 					legend:
@@ -38,8 +38,8 @@
 			{% endset %}
 
 			{{ govukRadios({
-				idPrefix: "contact-date-type",
-				name: "contact-date-type",
+				idPrefix: "event-date-type",
+				name: "event-date-type",
 				fieldset: 
 				{
 					legend: 
@@ -55,11 +55,11 @@
 				},
 				items: [
 				{
-					value: "a",
+					value: "today",
 					text: "Today (" + now|formatDate('D MMMM YYYY') + ")"
 				},
 				{
-					value: "b",
+					value: "other",
 					text: "Before today",
 					conditional: 
 					{
@@ -71,8 +71,7 @@
 
 			<p>
 				{{govukButton({
-					text: "Save and continue",
-					href: "event-time"
+					text: "Save and continue"
 				})}}
 			</p>
 		</form>

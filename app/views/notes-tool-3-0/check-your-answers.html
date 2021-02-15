@@ -48,6 +48,7 @@
 				{
 					items: [
 					{
+						classes: "govuk-link--no-visited-state",
 						href: "start-date?cya=true",
 						text: "Change",
 						visuallyHiddenText: "name"
@@ -62,13 +63,14 @@
 				},
 				value:
 				{
-					text: data['event-date']
+					text: data['event-date'] | formatDate('D MMMM YYYY')
 				},
 				actions:
 				{
 					items: [
 					{
-						href: "training-location?cya=true",
+						classes: "govuk-link--no-visited-state",
+						href: "event-date?cya=true",
 						text: "Change",
 						visuallyHiddenText: "name"
 					}
@@ -88,7 +90,8 @@
 				{
 					items: [
 					{
-						href: "how-many-apprentices?cya=true",
+						classes: "govuk-link--no-visited-state",
+						href: "event-time?cya=true",
 						text: "Change",
 						visuallyHiddenText: "name"
 					}
@@ -108,6 +111,7 @@
 				{
 					items: [
 					{
+						classes: "govuk-link--no-visited-state",
 						href: "organisation-name?cya=true",
 						text: "Change",
 						visuallyHiddenText: "name"
@@ -128,6 +132,7 @@
 				{
 					items: [
 					{
+						classes: "govuk-link--no-visited-state",
 						href: "organisation-name?cya=true",
 						text: "Change",
 						visuallyHiddenText: "name"
@@ -148,6 +153,7 @@
 				{
 					items: [
 					{
+						classes: "govuk-link--no-visited-state",
 						href: "contact-details?cya=true",
 						text: "Change",
 						visuallyHiddenText: "name"
@@ -168,6 +174,7 @@
 				{
 					items: [
 					{
+						classes: "govuk-link--no-visited-state",
 						href: "contact-details?cya=true",
 						text: "Change",
 						visuallyHiddenText: "name"
@@ -188,6 +195,7 @@
 				{
 					items: [
 					{
+						classes: "govuk-link--no-visited-state",
 						href: "contact-details?cya=true",
 						text: "Change",
 						visuallyHiddenText: "name"
