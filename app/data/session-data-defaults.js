@@ -23,14 +23,13 @@ module.exports = {
   "events":
   [
   {
-  	"id": "1",
-  	"type": "Test type",
-  	"datetime": "2021-02-15T00:00:00",
-  	"analysis": "Test analysis",
-  	"actions": "Test actions",
-  	"notes": "Test notes",
-  	"family-members": [],
-  	"files": []
+    'id': '1',
+    'type': 'Telephone call (out)',
+    "datetime": "2021-02-15T00:00:00",
+    'detailed-notes': 'Example detailed notes.',
+    'analysis': 'Example analysis text.',
+    'actions': 'Example actions.',
+    "family-members": []
   }
   ]
 }

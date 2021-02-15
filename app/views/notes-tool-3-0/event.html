@@ -15,31 +15,46 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 		<h1 class="govuk-heading-xl">
-			Home visit
+			{{event.type}}
 			<span class="govuk-caption-m">
-				9 October 2020
+				{{event.datetime|formatDate('D MMMM YYYY')}}
 			</span>
 		</h1>
 
 		<h2 class="govuk-heading-m">
 			Family present
 		</h2>
+		<p>
+			{{event.family}}
+		</p>
 
 		<h2 class="govuk-heading-m">
 			Your analysis
 		</h2>
+		<p>
+			{{event.analysis}}
+		</p>
 
 		<h2 class="govuk-heading-m">
 			Actions
 		</h2>
+		<p>
+			{{event.analysis}}
+		</p>
 
 		<h2 class="govuk-heading-m">
 			Detailed notes
 		</h2>		
+		<p>
+			{{event['detailed-notes']}}
+		</p>
 
 		<h2 class="govuk-heading-m">
 			Attachments
 		</h2>				
+		<p>
+			{{event.attachments}}
+		</p>
 	</div>
 
 	<div class="govuk-grid-column-one-third">

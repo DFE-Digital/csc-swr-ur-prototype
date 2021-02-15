@@ -21,6 +21,13 @@ router.post('/select-case', (req, res, next) => {
 	res.redirect('assessment-notes')
 })
 
+router.get('/event', (req, res, next) => {
+	let id = req.session.data['id']
+	let event = req.session.data['events'].find(event => event.id === id)
+
+	res.render(`${req.version}/event`, {event})
+})
+
 router.post('/create-event', (req, res, next) => {
 	let id = crypto.randomBytes(20).toString('hex');
 	req.session.data['id'] = id
