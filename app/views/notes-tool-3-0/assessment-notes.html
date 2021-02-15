@@ -9,35 +9,25 @@
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 		<h1 class="govuk-heading-xl">
-			{{data['case']['title'] or "Child A"}}
+			{{data['child'] or "Child A"}}
 		</h1>
 
+		{% if data['events'].length or data['show-events'] == 'true' %}
 		<form method="post" action="create-written-note">
 			<p>
 				{{govukButton({
 					text: "Add an event",
-					classes: "govuk-button--secondary",
 					href: "event-type"
 				})}}
 			</p>
 		</form>
+		{% endif %}
 		
 		<h2 class="govuk-heading-l">
 			Events recorded so far
 		</h2>
 
 		{% if data['events'].length or data['show-events'] == 'true' %}
-		<!-- <table class="govuk-table">
-			<tbody class="govuk-table__body">
-				{% for note in data['written-notes'] %}
-				<tr class="govuk-table__row">
-					<td class="govuk-table__cell"><a class="govuk-link--no-visited-state" href="written-note?id={{note.id}}">{{note.text | truncate(25) }}</a></td>
-					<td class="govuk-table__cell">{{note.timestamp | formatDate('DD MMMM YYYY')}}</td>
-				</tr>
-				{% endfor %}
-			</tbody>
-		</table> -->
-
 		<ol class="hmrc-timeline">
 			<li class="hmrc-timeline-event">
 				<h2 class="hmrc-timeline-event-title govuk-heading-m">
@@ -80,17 +70,16 @@
 		<p>
 			You have not added any events yet.
 		</p>
-		{% endif %}
-
 		<form method="post" action="create-written-note">
 			<p>
 				{{govukButton({
 					text: "Add an event",
-					classes: "govuk-button--secondary govuk-!-margin-top-8",
+					classes: "govuk-!-margin-top-4",
 					href: "event-type"
 				})}}
 			</p>
 		</form>
+		{% endif %}
 	</div>
 
 	<div class="govuk-grid-column-one-third">

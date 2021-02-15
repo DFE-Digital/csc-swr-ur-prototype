@@ -17,8 +17,8 @@
 	<div class="govuk-grid-column-two-thirds">
 		<form method="post">
 			{{ govukCheckboxes({
-				idPrefix: "family-member",
-				name: "family-member",
+				idPrefix: "family-members",
+				name: "family-members",
 				classes: "govuk-checkboxes--small",
 				fieldset: 
 				{
@@ -35,7 +35,7 @@
 				},
 				items: [
 				{
-					value: "a",
+					value: "Family member A",
 					text: "Family member A",
 					hint:
 					{
@@ -43,7 +43,7 @@
 					}
 				},
 				{
-					value: "b",
+					value: "Family member B",
 					text: "Family member B",
 					hint:
 					{
@@ -51,7 +51,7 @@
 					}
 				},
 				{
-					value: "c",
+					value: "Family member C",
 					text: "Family member C",
 					hint:
 					{
@@ -63,8 +63,7 @@
 
 			<p>
 				{{govukButton({
-					text: "Save and continue",
-					href: "family-members"
+					text: "Save and continue"
 				})}}
 			</p>
 		</form>

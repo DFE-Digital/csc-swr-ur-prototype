@@ -16,14 +16,12 @@ router.get('/', (req, res, next) => {
 	res.redirect(`/${req.version}/start`)
 })
 
-router.post('/contact-time', (req, res, next) => {
-	let type = req.session.data['type-of-contact']
+router.post('/select-case', (req, res, next) => {
+	res.redirect('assessment-notes')
+})
 
-	if(type == 'case-note'){
-		res.redirect('contact-method')
-	} else if(type == 'daily-record'){
-		res.redirect('general-information')
-	}
+router.post('/event-time', (req, res, next) => {
+	res.redirect('other-family-present')
 })
 
 router.post('/other-family-present', (req, res, next) => {
@@ -32,6 +30,10 @@ router.post('/other-family-present', (req, res, next) => {
 	} else {
 		res.redirect('detailed-notes')
 	}
+})
+
+router.post('/add-family-member', (req, res, next) => {
+	res.redirect('family-members')
 })
 
 router.post('/family-members', (req, res, next) => {

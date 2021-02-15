@@ -17,8 +17,8 @@
 	<div class="govuk-grid-column-two-thirds">
 		<form method="post">
 			{{ govukRadios({
-				idPrefix: "existing-new",
-				name: "existing-new",
+				idPrefix: "child",
+				name: "child",
 				fieldset: 
 				{
 					legend: 
@@ -34,7 +34,7 @@
 				},
 				items: [
 				{
-					value: "a",
+					value: "Child A",
 					text: "Child A",
 					hint:
 					{
@@ -42,7 +42,7 @@
 					}
 				},
 				{
-					value: "b",
+					value: "Child B",
 					text: "Child B",
 					hint:
 					{
@@ -50,7 +50,7 @@
 					}
 				},
 				{
-					value: "c",
+					value: "Child C",
 					text: "Child C",
 					hint:
 					{
@@ -62,8 +62,7 @@
 
 			<p>
 				{{govukButton({
-					text: "Save and continue",
-					href: "assessment-notes"
+					text: "Save and continue"
 				})}}
 			</p>
 		</form>

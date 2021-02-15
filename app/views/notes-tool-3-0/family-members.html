@@ -20,13 +20,11 @@
 				Family members present
 			</h1>
 
+			{% for familyMember in data['family-members'] %}
 			<p>
-				Family member A
+				{{familyMember}}
 			</p>
-
-			<p>
-				Family member B
-			</p>
+			{% endfor %}
 
 			{{ govukRadios({
 				idPrefix: "add-more-family",

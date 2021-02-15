@@ -17,32 +17,32 @@
 	<div class="govuk-grid-column-two-thirds">
 		<form method="post">
 			<div class="govuk-form-group">
-				<fieldset class="govuk-fieldset" role="group" aria-describedby="dob-hint">
+				<fieldset class="govuk-fieldset" role="group" aria-describedby="event-time-hint">
 					<legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
 						<h1 class="govuk-fieldset__heading">
 							What time did this event happen? (optional)
 						</h1>
 					</legend>
-					<div id="dob-hint" class="govuk-hint">
+					<div id="event-time-hint" class="govuk-hint">
 						For example, 14:30
 					</div>
-					<div class="govuk-date-input" id="dob">
+					<div class="govuk-date-input" id="event-time">
 						<div class="govuk-date-input__item">
 							<div class="govuk-form-group">
-								<label class="govuk-label govuk-date-input__label" for="dob-day">
+								<label class="govuk-label govuk-date-input__label" for="event-time-hours">
 									Hour
 								</label>
-								<input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-day" name="dob-day" type="text" autocomplete="bday-day" pattern="[0-9]*" inputmode="numeric"></div>
+								<input class="govuk-input govuk-date-input__input govuk-input--width-2" id="event-time-hours" name="event-time-hours" type="text" pattern="([0-1]{1}[0-9]{1}|20|21|22|23)" inputmode="numeric"></div>
 							</div>
 							<div class="govuk-date-input__item govuk-label govuk-!-font-weight-bold">
 								:
 							</div>
 							<div class="govuk-date-input__item">
 								<div class="govuk-form-group">
-									<label class="govuk-label govuk-date-input__label" for="dob-month">
+									<label class="govuk-label govuk-date-input__label" for="event-time-minutes">
 										Minute
 									</label>
-									<input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-month" name="dob-month" type="text" autocomplete="bday-month" pattern="[0-9]*" inputmode="numeric"></div>
+									<input class="govuk-input govuk-date-input__input govuk-input--width-2" id="event-time-minutes" name="event-time-minutes" type="text" pattern="[0-5]{1}[0-9]{1}" inputmode="numeric"></div>
 								</div>
 							</div>
 
@@ -52,8 +52,7 @@
 
 					<p>
 						{{govukButton({
-							text: "Save and continue",
-							href: "other-family-present"
+							text: "Save and continue"
 						})}}
 					</p>
 				</form>

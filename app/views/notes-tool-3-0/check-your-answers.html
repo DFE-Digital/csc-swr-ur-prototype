@@ -19,49 +19,22 @@
 			Review event details
 		</h1>
 
+		{% set familyMembers %}
+		{% for familyMember in data['family-members'] %}
+		<p>
+			{{familyMember}}
+		</p>
+		{% endfor %}
+		{% endset %}
+
+		{% set eventTime %}
+		{% set string = "2000-01-01 " + data['event-time-hours'] + ":" + data['event-time-minutes'] %}
+		{{string | formatDate('h:mma')}}
+		{% endset %}
+
 		{{ govukSummaryList({
 			classes: 'govuk-!-margin-bottom-6',
 			rows: [
-			{
-				key:
-				{
-					text: "Event date"
-				},
-				value:
-				{
-					text: "a"
-				},
-				actions:
-				{
-					items: [
-					{
-						href: "training-location?cya=true",
-						text: "Change",
-						visuallyHiddenText: "name"
-					}
-					]
-				}
-			},
-			{
-				key:
-				{
-					text: "Event time"
-				},
-				value:
-				{
-					text: "a"
-				},
-				actions:
-				{
-					items: [
-					{
-						href: "how-many-apprentices?cya=true",
-						text: "Change",
-						visuallyHiddenText: "name"
-					}
-					]
-				}
-			},
 			{
 				key:
 				{
@@ -85,17 +58,37 @@
 			{
 				key:
 				{
-					text: "Reason for contact"
+					text: "Event date"
 				},
 				value:
 				{
-					text: "s"
+					text: data['event-date']
 				},
 				actions:
 				{
 					items: [
 					{
-						href: "organisation-name?cya=true",
+						href: "training-location?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			},
+			{
+				key:
+				{
+					text: "Event time"
+				},
+				value:
+				{
+					text: eventTime
+				},
+				actions:
+				{
+					items: [
+					{
+						href: "how-many-apprentices?cya=true",
 						text: "Change",
 						visuallyHiddenText: "name"
 					}
@@ -109,7 +102,7 @@
 				},
 				value:
 				{
-					text: "s"
+					html: familyMembers
 				},
 				actions:
 				{
@@ -129,13 +122,13 @@
 				},
 				value:
 				{
-					html: "a"
+					html: familyMembers
 				},
 				actions:
 				{
 					items: [
 					{
-						href: "contact-details?cya=true",
+						href: "organisation-name?cya=true",
 						text: "Change",
 						visuallyHiddenText: "name"
 					}
@@ -145,7 +138,7 @@
 			{
 				key:
 				{
-					text: "Analysis of information"
+					text: "Your analysis"
 				},
 				value:
 				{
@@ -165,7 +158,27 @@
 			{
 				key:
 				{
-					text: "Action"
+					text: "Actions required"
+				},
+				value:
+				{
+					html: "a"
+				},
+				actions:
+				{
+					items: [
+					{
+						href: "contact-details?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			},
+			{
+				key:
+				{
+					text: "Attachments"
 				},
 				value:
 				{
@@ -190,7 +203,7 @@
 		</h2>		
 
 		<p>
-			If you've added all the information you need to, you should confirm and save the event to the case for 'Child A'.
+			If you've added all the information you need to, you should confirm and save the event to the case for '{{data['child'] or 'Child A'}}'.
 		</p>
 
 		<p>

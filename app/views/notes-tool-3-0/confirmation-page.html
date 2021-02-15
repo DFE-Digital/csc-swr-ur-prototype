@@ -18,9 +18,11 @@ html: 'This service is being used for research only.'
 
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
+		{% set child = data['child'] or 'Child A' %}
+
 		{{ govukPanel({
 			classes: "govuk-!-margin-bottom-8",
-			titleText: "We've saved this event to the case for 'Child A'"
+			titleText: "We've saved this event to the case for '" + child + "'"
 		}) }}
 
 		<p class="govuk-body govuk-!-margin-top-6">
