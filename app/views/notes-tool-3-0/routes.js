@@ -22,21 +22,63 @@ router.post('/select-case', (req, res, next) => {
 })
 
 router.post('/event-type', (req, res, next) => {
+	let id = crypto.randomBytes(20).toString('hex');
+	req.session.data['id'] = id
+
+	let event = {
+		'id': id,
+		'type': req.session.data['event-type']
+	}
+
+	req.session.data['events'].push(event)
+
 	res.redirect('event-date')
 })
 
+function updateEvent(id, property, value, req, res) {
+	// https://stackoverflow.com/questions/7364150/find-object-by-id-in-an-array-of-javascript-objects
+	let obj = req.session.data['events'].find(event => event.id === id)
+	
+	obj[property] = value
+
+	console.log(req.session.data['events'])
+}
+
 router.post('/event-date', (req, res, next) => {
+	let id = req.session.data['id']
+
 	if(req.session.data['event-date-type'] == 'today'){
-		req.session.data['event-date'] = new Date()
+		let date = new Date()
+		
+		updateEvent(id, 'datetime', date, req, res)
 	} else {
-		let date = req.session.data['other-date-year'] + "-" + req.session.data['other-date-month'] + "-" + req.session.data['other-date-day'] + "T00:00:00"
-		req.session.data['event-date'] = new Date(date)
+		let dateString = req.session.data['other-date-year'] + "-" + req.session.data['other-date-month'] + "-" + req.session.data['other-date-day'] + "T00:00:00"
+		let date = new Date(dateString)
+
+		updateEvent(id, 'datetime', date, req, res)
 	}
 
 	res.redirect('event-time')
 })
 
 router.post('/event-time', (req, res, next) => {
+	let id = req.session.data['id']
+
+	// find the event object we want to modify
+	let event = req.session.data['events'].find(event => event.id === id)
+
+	// split the date from the time
+	let date = event['datetime'].split("T")[0]
+
+	// convert the user time to a string
+	let time = req.session.data['event-time-hours'] + ":" + req.session.data['event-time-minutes'] + ":00"
+
+	// create the new datetime value by combining the date and time variables
+	let datetime = date + "T" + time
+
+	// update the events array
+	updateEvent(id, 'datetime', datetime, req, res)
+
 	res.redirect('other-family-present')
 })
 
