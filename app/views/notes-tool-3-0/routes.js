@@ -21,6 +21,10 @@ router.post('/select-case', (req, res, next) => {
 	res.redirect('assessment-notes')
 })
 
+router.post('/event-type', (req, res, next) => {
+	res.redirect('event-date')
+})
+
 router.post('/event-date', (req, res, next) => {
 	if(req.session.data['event-date-type'] == 'today'){
 		req.session.data['event-date'] = new Date()
@@ -62,6 +66,12 @@ router.post('/attachments', (req, res, next) => {
 	} else {
 		res.redirect('check-your-answers')
 	}
+})
+
+router.post('/new-media-file', (req, res, next) => {
+	delete req.session.data['attach-files']
+
+	res.redirect('file-upload-complete')
 })
 
 router.post('/mental-health-concerns', (req, res, next) => {
