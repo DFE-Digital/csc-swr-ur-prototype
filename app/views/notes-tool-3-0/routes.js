@@ -5,8 +5,9 @@ const moment = require('moment')
 
 // Add your routes here - above the module.exports line
 
-// Use this to set the service name on all page in this version
+
 router.all('*', function (req, res, next) {
+	// this is to set the service name on all page in this version
 	res.locals['serviceName'] = 'Record notes for a social work assessment'
 
 	next()
@@ -23,30 +24,39 @@ router.post('/select-case', (req, res, next) => {
 
 router.get('/event', (req, res, next) => {
 	let id = req.session.data['id']
+
+	// find the event with the matching id from the events object in our session data
 	let event = req.session.data['events'].find(event => event.id === id)
 
+	// render the page and include the event object
 	res.render(`${req.version}/event`, {event})
 })
 
 router.post('/create-event', (req, res, next) => {
+	// generate a long random id and declare the variable
 	let id = crypto.randomBytes(20).toString('hex');
 	req.session.data['id'] = id
 
+	// define the object
 	let event = {
 		'id': id
 	}
 
+	// push the object into the events array in our session data
 	req.session.data['events'].push(event)
 
 	res.redirect('event-type')
 })
 
 function updateEvent(id, property, value, req, res) {
-	// https://stackoverflow.com/questions/7364150/find-object-by-id-in-an-array-of-javascript-objects
+	// find the event with the matching id from the events object in our session data
+	// from https://stackoverflow.com/questions/7364150/find-object-by-id-in-an-array-of-javascript-objects
 	let obj = req.session.data['events'].find(event => event.id === id)
 	
+	// set the property value to the one that we pass in to this function
 	obj[property] = value
 
+	// log the changes to console
 	console.log(req.session.data['events'])
 }
 
@@ -62,16 +72,23 @@ router.post('/event-type', (req, res, next) => {
 router.post('/event-date', (req, res, next) => {
 	let id = req.session.data['id']
 
+	// make sure we're using the same date format
 	let format = "YYYY-MM-DDTHH:mm"
 
 	if(req.session.data['event-date-type'] == 'today'){
+		// if the user selected 'today' then set the date variable as today's date
 		let date = moment().format(format)
 		
+		// then update the object		
 		updateEvent(id, 'datetime', date, req, res)
 	} else {
+		// otherwise, combine the date fields into a string
 		let dateString = req.session.data['other-date-year'] + "-" + req.session.data['other-date-month'] + "-" + req.session.data['other-date-day']
+
+		// set the date variable and format the date
 		let date = moment(dateString, "YYYY-MM-DD").format(format)
 
+		// then update the object
 		updateEvent(id, 'datetime', date, req, res)
 	}
 
@@ -172,11 +189,11 @@ router.post('/new-media-file', (req, res, next) => {
 })
 
 router.post('/check-your-answers', (req, res, next) => {
+	// when we confirm the answers we need to sort the events by date
+	// from https://stackoverflow.com/questions/10123953/how-to-sort-an-object-array-by-date-property
 	req.session.data['events'].sort(function(a,b){
-		// https://stackoverflow.com/questions/10123953/how-to-sort-an-object-array-by-date-property
 		return new Date(b.datetime) - new Date(a.datetime);
 	});
-
 
 	res.redirect('confirmation-page')
 })
