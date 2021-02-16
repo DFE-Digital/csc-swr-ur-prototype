@@ -41,15 +41,6 @@ router.post('/create-event', (req, res, next) => {
 	res.redirect('event-type')
 })
 
-router.post('/event-type', (req, res, next) => {
-	let id = req.session.data['id']
-	let type = req.session.data['event-type']
-
-	updateEvent(id, 'type', type, req, res)
-
-	res.redirect('event-date')
-})
-
 function updateEvent(id, property, value, req, res) {
 	// https://stackoverflow.com/questions/7364150/find-object-by-id-in-an-array-of-javascript-objects
 	let obj = req.session.data['events'].find(event => event.id === id)
@@ -58,6 +49,15 @@ function updateEvent(id, property, value, req, res) {
 
 	console.log(req.session.data['events'])
 }
+
+router.post('/event-type', (req, res, next) => {
+	let id = req.session.data['id']
+	let type = req.session.data['event-type']
+
+	updateEvent(id, 'type', type, req, res)
+
+	res.redirect('event-date')
+})
 
 router.post('/event-date', (req, res, next) => {
 	let id = req.session.data['id']
