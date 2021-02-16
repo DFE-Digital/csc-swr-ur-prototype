@@ -55,12 +55,14 @@
 		<ol class="hmrc-timeline">
 			{% for event in data['events'] %}
 			<li class="hmrc-timeline-event">
-				<h2 class="hmrc-timeline-event-title govuk-heading-m">
+				<h2 class="hmrc-timeline-event-title govuk-heading-m govuk-!-margin-bottom-3">
 					{{event.type}}
+					<span class="hmrc-timeline-event-meta govuk-caption-m govuk-!-font-size-16">
+						{% set dates = event.datetime.split('T')[0] %}
+						{% set time = event.datetime.split('T')[1] %}
+						{{date | formatDate('D MMMM YYYY')}} at {{event.datetime | formatDate('h:mma') if time.length}}
+					</span>
 				</h2>
-				<span class="hmrc-timeline-event-meta govuk-body-s">
-					{{event.datetime|formatDate('h:mma, D MMMM YYYY')}}
-				</span>
 
 				<div class="hmrc-timeline-event-content">
 					<p>
