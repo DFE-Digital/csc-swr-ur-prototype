@@ -30,6 +30,15 @@ module.exports = {
     'analysis': 'Example analysis text.',
     'actions': 'Example actions.',
     "family-members": []
+  },
+  {
+    'id': '2',
+    'type': 'Home visit',
+    "datetime": "2021-01-12T15:30:00",
+    'detailed-notes': 'Example detailed notes.',
+    'analysis': 'Example analysis text.',
+    'actions': 'Example actions.',
+    "family-members": []
   }
   ]
 }
