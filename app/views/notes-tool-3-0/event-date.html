@@ -56,7 +56,11 @@
 				items: [
 				{
 					value: "today",
-					text: "Today (" + now|formatDate('D MMMM YYYY') + ")"
+					text: "Today (" + now|formatDate('D MMMM YYYY') + ")",
+					attributes:
+					{
+						required: "required"
+					}
 				},
 				{
 					value: "other",
@@ -64,6 +68,10 @@
 					conditional: 
 					{
 						html: contactDateHtml
+					},
+					attributes:
+					{
+						required: "required"
 					}
 				}
 				]
