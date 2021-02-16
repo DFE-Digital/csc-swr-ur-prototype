@@ -1,17 +1,8 @@
 
 {% extends "layout.html" %}
 
-{% block pageTitle %}
-GOV.UK Prototype Kit
-{% endblock %}
-
 {% block beforeContent %}
-{{ govukPhaseBanner({
-	tag: {
-	text: "experimental"
-},
-html: 'This service is being used for research only.'
-}) }}
+{% include './includes/phase-banner--alpha.html' %}
 {% endblock %}
 
 {% block content %}

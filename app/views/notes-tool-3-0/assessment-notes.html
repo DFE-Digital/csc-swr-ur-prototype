@@ -60,7 +60,7 @@
 					<span class="hmrc-timeline-event-meta govuk-caption-m govuk-!-font-size-16">
 						{% set dates = event.datetime.split('T')[0] %}
 						{% set time = event.datetime.split('T')[1] %}
-						{{date | formatDate('D MMMM YYYY')}} at {{event.datetime | formatDate('h:mma') if time.length}}
+						{{date | formatDate('D MMMM YYYY')}} {{"at " + event.datetime | formatDate('h:mma') if time.length}}
 					</span>
 				</h2>
 
