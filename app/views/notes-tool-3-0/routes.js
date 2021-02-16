@@ -48,6 +48,7 @@ router.post('/create-event', (req, res, next) => {
 	res.redirect('event-type')
 })
 
+// use this function to update the events object
 function updateEvent(id, property, value, req, res) {
 	// find the event with the matching id from the events object in our session data
 	// from https://stackoverflow.com/questions/7364150/find-object-by-id-in-an-array-of-javascript-objects
