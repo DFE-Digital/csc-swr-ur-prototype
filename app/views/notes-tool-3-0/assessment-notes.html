@@ -14,6 +14,32 @@
 				Case: 70037619
 			</span>
 		</h1>
+		
+		<!-- <div class="hmcts-search govuk-!-margin-bottom-8">
+			<form action="" method="get">
+				<div class="govuk-form-group">
+					<label class="govuk-label hmcts-search__label govuk-label--m" for="bill">
+						Search
+					</label>
+
+					<span id="bill-hint" class="govuk-hint hmcts-search__hint ">
+						You can search for keywords, family members and attachments
+					</span>
+
+					<input class="govuk-input hmcts-search__input " id="bill" name="bill" type="search" aria-describedby="bill-hint">
+				</div>
+
+				<button class="govuk-button hmcts-search__button govuk-button--secondary " data-module="govuk-button">
+					Search
+				</button>
+			</form>
+		</div> -->
+
+		
+
+		<h2 class="govuk-heading-l">
+			Events recorded so far
+		</h2>
 
 		{% if data['events'].length %}
 		<form method="post" action="create-event">
@@ -24,12 +50,6 @@
 			</p>
 		</form>
 		{% endif %}
-		
-		<!-- {{data['events'] | dump}} -->
-
-		<h2 class="govuk-heading-l">
-			Events recorded so far
-		</h2>
 
 		{% if data['events'].length %}
 		<ol class="hmrc-timeline">
