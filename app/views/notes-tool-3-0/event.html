@@ -25,26 +25,26 @@
 			Notes
 		</h2>		
 		<p>
-			{{event['detailed-notes'] | striptags(true) | escape | nl2br or "No notes added."}}
+			{% if event['detailed-notes'].length %}
+			{{event['detailed-notes'] | striptags(true) | escape | nl2br}}
+			{% else %}
+			No notes added.
+			{% endif %}
 		</p>
 
 		<h2 class="govuk-heading-m">
 			Family
 		</h2>
 		<p>
-			{% set familyMembers %}
 			{% if event['family'].length %}
 			{% for familyMember in event['family'] %}
-			<p>
-				{{familyMember}}
-			</p>
+			<ul class="govuk-list">
+				<li>{{familyMember}}</li>
+			</ul>
 			{% endfor %}
 			{% else %}
 			No family added.
 			{% endif %}
-			{% endset %}
-
-			{{familyMembers}}
 		</p>
 
 		<h2 class="govuk-heading-m">
