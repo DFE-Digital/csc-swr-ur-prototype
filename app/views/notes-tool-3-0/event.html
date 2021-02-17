@@ -17,43 +17,51 @@
 		<h1 class="govuk-heading-xl">
 			{{event.type}}
 			<span class="govuk-caption-m">
-				{{event.datetime|formatDate('D MMMM YYYY')}}
+				{{event.datetime.split('T')[0] | formatDate('D MMMM YYYY')}} {{"at " + event.datetime | formatDate('h:mma') if event.datetime.split('T')[1].length}}
 			</span>
 		</h1>
 
 		<h2 class="govuk-heading-m">
-			Family present
-		</h2>
-		<p>
-			{{event.family}}
-		</p>
-
-		<h2 class="govuk-heading-m">
-			Your analysis
-		</h2>
-		<p>
-			{{event.analysis}}
-		</p>
-
-		<h2 class="govuk-heading-m">
-			Actions
-		</h2>
-		<p>
-			{{event.analysis}}
-		</p>
-
-		<h2 class="govuk-heading-m">
-			Detailed notes
+			Notes
 		</h2>		
 		<p>
-			{{event['detailed-notes']}}
+			{{event['detailed-notes'] | striptags(true) | escape | nl2br or "No notes added."}}
+		</p>
+
+		<h2 class="govuk-heading-m">
+			Family
+		</h2>
+		<p>
+			{% set familyMembers %}
+			{% if event['family'].length %}
+			{% for familyMember in event['family'] %}
+			<p>
+				{{familyMember}}
+			</p>
+			{% endfor %}
+			{% else %}
+			No family added.
+			{% endif %}
+			{% endset %}
+
+			{{familyMembers}}
 		</p>
 
 		<h2 class="govuk-heading-m">
 			Attachments
 		</h2>				
 		<p>
-			{{event.attachments}}
+			{% set attachments %}
+			{% if event['attachments'].length %}
+			{% for attachment in event['attachments'] %}
+			<p>{{attachment}}</p>
+			{% endfor %}
+			{% else %}
+			No attachments.
+			{% endif %}
+			{% endset %}
+
+			{{attachments}}
 		</p>
 	</div>
 

@@ -20,17 +20,31 @@
 		</h1>
 
 		{% set familyMembers %}
-		{% for familyMember in data['family-members'] %}
+		{% if event['family'].length %}
+		{% for familyMember in event['family'] %}
 		<p>
 			{{familyMember}}
 		</p>
 		{% endfor %}
+		{% else %}
+		-
+		{% endif %}
 		{% endset %}
 
 		{% set eventTime %}
 		{% set time = event.datetime.split('T')[1] %}
 		{{ event.datetime | formatDate('h:mma') if time.length else '-' }}
 		{% endset %}
+
+		{% set attachments %}
+		{% if event['attachments'].length %}
+		{% for attachment in event['attachments'] %}
+		<p>{{attachment}}</p>
+		{% endfor %}
+		{% else %}
+		-
+		{% endif %}
+		{% endset %}		
 
 		{{ govukSummaryList({
 			classes: 'govuk-!-margin-bottom-6',
@@ -112,7 +126,7 @@
 					items: [
 					{
 						classes: "govuk-link--no-visited-state",
-						href: "organisation-name?cya=true",
+						href: "other-family-present?cya=true",
 						text: "Change",
 						visuallyHiddenText: "name"
 					}
@@ -122,60 +136,18 @@
 			{
 				key:
 				{
-					text: "Detailed notes"
+					text: "Notes"
 				},
 				value:
 				{
-					text: event['detailed-notes']
+					text: event['detailed-notes'] or "-"
 				},
 				actions:
 				{
 					items: [
 					{
 						classes: "govuk-link--no-visited-state",
-						href: "organisation-name?cya=true",
-						text: "Change",
-						visuallyHiddenText: "name"
-					}
-					]
-				}
-			},
-			{
-				key:
-				{
-					text: "Your analysis"
-				},
-				value:
-				{
-					text: data['analysis']
-				},
-				actions:
-				{
-					items: [
-					{
-						classes: "govuk-link--no-visited-state",
-						href: "contact-details?cya=true",
-						text: "Change",
-						visuallyHiddenText: "name"
-					}
-					]
-				}
-			},
-			{
-				key:
-				{
-					text: "Actions required"
-				},
-				value:
-				{
-					text: data['actions']
-				},
-				actions:
-				{
-					items: [
-					{
-						classes: "govuk-link--no-visited-state",
-						href: "contact-details?cya=true",
+						href: "notes?cya=true",
 						text: "Change",
 						visuallyHiddenText: "name"
 					}
@@ -189,14 +161,14 @@
 				},
 				value:
 				{
-					html: ""
+					html: attachments
 				},
 				actions:
 				{
 					items: [
 					{
 						classes: "govuk-link--no-visited-state",
-						href: "contact-details?cya=true",
+						href: "attachments?cya=true",
 						text: "Change",
 						visuallyHiddenText: "name"
 					}

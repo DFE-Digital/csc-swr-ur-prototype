@@ -89,6 +89,8 @@ router.post('/event-date', (req, res, next) => {
 		// set the date variable and format the date
 		let date = moment(dateString, "YYYY-MM-DD").format(format)
 
+		console.log(date)
+
 		// then update the object
 		updateEvent(id, 'datetime', date, req, res)
 	}
@@ -188,11 +190,18 @@ router.post('/attachments', (req, res, next) => {
 	if(req.session.data['attach-files'] == 'yes'){
 		res.redirect('new-media-file')
 	} else {
+		let id = req.session.data['id']
+		updateEvent(id, 'attachments', '', req, res)
 		res.redirect('check-your-answers')
 	}
 })
 
 router.post('/new-media-file', (req, res, next) => {
+	let id = req.session.data['id']
+	let attachments = ['IMG2081.jpg', 'IMG2092.jpg']
+
+	updateEvent(id, 'attachments', attachments, req, res)
+
 	delete req.session.data['attach-files']
 
 	res.redirect('file-upload-complete')

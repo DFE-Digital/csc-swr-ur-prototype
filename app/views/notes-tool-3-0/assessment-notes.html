@@ -58,15 +58,13 @@
 				<h2 class="hmrc-timeline-event-title govuk-heading-m govuk-!-margin-bottom-3">
 					{{event.type}}
 					<span class="hmrc-timeline-event-meta govuk-caption-m govuk-!-font-size-16">
-						{% set dates = event.datetime.split('T')[0] %}
-						{% set time = event.datetime.split('T')[1] %}
-						{{date | formatDate('D MMMM YYYY')}} {{"at " + event.datetime | formatDate('h:mma') if time.length}}
+						{{event.datetime.split('T')[0] | formatDate('D MMMM YYYY')}} {{"at " + event.datetime | formatDate('h:mma') if event.datetime.split('T')[1].length}}
 					</span>
 				</h2>
 
 				<div class="hmrc-timeline-event-content">
 					<p>
-						{{event.analysis}}
+						{{event['detailed-notes'] | striptags(true) | escape | nl2br | truncate(240)}}
 					</p>
 					<p>
 						<a href="event?id={{event.id}}">View event</a>
