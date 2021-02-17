@@ -21,3 +21,23 @@ $govuk-assets-path: '/govuk/assets/';
 @import "components/hmcts-search";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+.govuk-header--no-logo {
+	&.govuk-header {
+		border-bottom: 0 none;
+	}
+	
+	.govuk-header__logo {
+		display: none;
+	}
+
+	.govuk-header__content {
+		@include govuk-media-query ($from: desktop) {
+			padding-left: 0;
+		}
+	}
+
+	.govuk-header__container {
+		margin-bottom: 0;
+		border-bottom: 0 none;
+	}
+}
