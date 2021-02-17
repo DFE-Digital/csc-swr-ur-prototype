@@ -50,19 +50,15 @@
 		<h2 class="govuk-heading-m">
 			Attachments
 		</h2>				
+		{% if event['attachments'].length %}
+		{% for attachment in event['attachments'] %}
 		<p>
-			{% set attachments %}
-			{% if event['attachments'].length %}
-			{% for attachment in event['attachments'] %}
-			<p>{{attachment}}</p>
-			{% endfor %}
-			{% else %}
-			No attachments.
-			{% endif %}
-			{% endset %}
-
-			{{attachments}}
+			<img src="https://dummyimage.com/600x400/666/fff&text=Example" alt="{{attachment}}" width="100%">
 		</p>
+		{% endfor %}
+		{% else %}
+		No attachments.
+		{% endif %}
 	</div>
 
 	<div class="govuk-grid-column-one-third">
