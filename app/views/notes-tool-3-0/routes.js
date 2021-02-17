@@ -83,9 +83,9 @@ router.post('/event-date', (req, res, next) => {
 		// then update the object		
 		updateEvent(id, 'datetime', date, req, res)
 	} else {
+		// check the user entered values and set the datestring accordingly
 		let dateString
-
-		// check the user entered values and set the datestring
+		
 		if(req.session.data['other-date-year'] && req.session.data['other-date-month'] && req.session.data['other-date-day']){
 			dateString = req.session.data['other-date-year'] + "-" + req.session.data['other-date-month'] + "-" + req.session.data['other-date-day']
 		} else {
