@@ -127,8 +127,17 @@ router.post('/other-family-present', (req, res, next) => {
 	if(req.session.data['other-family-present'] == 'yes'){
 		res.redirect('add-family-member')
 	} else {
-		res.redirect('detailed-notes')
+		res.redirect('notes')
 	}
+})
+
+router.post('/notes', (req, res, next) => {
+	let id = req.session.data['id']
+	let detailedNotes = req.session.data['detailed-notes']
+
+	updateEvent(id, 'detailed-notes', detailedNotes, req, res)
+
+	res.redirect('attachments')
 })
 
 router.post('/add-family-member', (req, res, next) => {
@@ -144,7 +153,7 @@ router.post('/family-members', (req, res, next) => {
 
 		updateEvent(id, 'family', familyMembers, req, res)
 
-		res.redirect('detailed-notes')
+		res.redirect('notes')
 	}
 })
 
@@ -187,6 +196,17 @@ router.post('/new-media-file', (req, res, next) => {
 	delete req.session.data['attach-files']
 
 	res.redirect('file-upload-complete')
+})
+
+// check your answers
+router.get('/check-your-answers', (req, res, next) => {
+	let id = req.session.data['id']
+
+	// find the event with the matching id from the events object in our session data
+	let event = req.session.data['events'].find(event => event.id === id)
+
+	// render the page and include the event object
+	res.render(`${req.version}/check-your-answers`, {event})
 })
 
 router.post('/check-your-answers', (req, res, next) => {

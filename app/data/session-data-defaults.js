@@ -18,12 +18,11 @@ Example usage:
 */
 
 module.exports = {
-
-  // Insert values here
+  "id": "example-1",
   "events":
   [
   {
-    'id': '1',
+    'id': 'example-1',
     'type': 'Telephone call (out)',
     "datetime": "2021-02-16T12:30:00",
     'detailed-notes': 'Example detailed notes.',
@@ -32,7 +31,7 @@ module.exports = {
     "family-members": []
   },
   {
-    'id': '2',
+    'id': 'example-2',
     'type': 'Home visit',
     "datetime": "2021-01-12T15:30:00",
     'detailed-notes': 'Example detailed notes.',

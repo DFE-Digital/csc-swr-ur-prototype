@@ -28,8 +28,8 @@
 		{% endset %}
 
 		{% set eventTime %}
-		{% set string = "2000-01-01 " + data['event-time-hours'] + ":" + data['event-time-minutes'] %}
-		{{string | formatDate('h:mma')}}
+		{% set time = event.datetime.split('T')[1] %}
+		{{ event.datetime | formatDate('h:mma') if time.length else '-' }}
 		{% endset %}
 
 		{{ govukSummaryList({
@@ -42,7 +42,7 @@
 				},
 				value:
 				{
-					text: data['event-type']
+					text: event['type']
 				},
 				actions:
 				{
@@ -63,7 +63,7 @@
 				},
 				value:
 				{
-					text: data['event-date'] | formatDate('D MMMM YYYY')
+					text: event['datetime'] | formatDate('D MMMM YYYY')
 				},
 				actions:
 				{
@@ -126,7 +126,7 @@
 				},
 				value:
 				{
-					text: data['detailed-notes']
+					text: event['detailed-notes']
 				},
 				actions:
 				{

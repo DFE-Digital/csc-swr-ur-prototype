@@ -1,0 +1,58 @@
+
+{% extends "layout.html" %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{% set hint %}
+			<p>A brief description of conversations, including:</p>
+			<ul class="govuk-list govuk-list--bullet">
+				<li>important comments</li>
+				<li>statements</li>
+				<li>decisions</li>
+				<li>questions and answers</li>
+			</ul>
+			{% endset %}
+
+			{{ govukTextarea({
+				name: "detailed-notes",
+				id: "detailed-notes",
+				label:
+				{
+					text: "Notes (optional)",
+					classes: "govuk-label--xl",
+					isPageHeading: true
+				},
+				rows: "16",
+				hint:
+				{
+					html: ''
+				}
+			}) }}
+
+			{{govukButton({
+				text: "Add an audio file to transcribe",
+				classes: "govuk-button--secondary govuk-!-margin-bottom-8"
+			})}}
+
+			<p class="govuk-!-margin-bottom-0">
+				{{govukButton({
+					text: "Save and continue"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}
