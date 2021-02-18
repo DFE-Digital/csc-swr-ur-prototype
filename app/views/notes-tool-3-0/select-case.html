@@ -1,6 +1,10 @@
 
 {% extends "./layout_no-gov.html" %}
 
+{% block pageTitle %}
+Select a child's case - GOV.UK
+{% endblock %}
+
 {% block beforeContent %}
 {% include './includes/phase-banner--alpha.html' %}
 
@@ -23,7 +27,7 @@
 				{
 					legend: 
 					{
-						text: "Select a case",
+						text: "Select a child's case",
 						isPageHeading: true,
 						classes: "govuk-fieldset__legend--xl"
 					}

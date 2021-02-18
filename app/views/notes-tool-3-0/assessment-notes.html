@@ -1,5 +1,9 @@
 {% extends "./layout_no-gov.html" %}
 
+{% block pageTitle %}
+Case notes for {{data['child'] or "Child A"}} - GOV.UK
+{% endblock %}
+
 {% block beforeContent %}
 {% include './includes/phase-banner--alpha.html' %}
 {% endblock %}
