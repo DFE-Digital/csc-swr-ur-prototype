@@ -1,0 +1,55 @@
+
+{% extends "./layout_no-gov.html" %}
+
+{% block pageTitle %}
+Record notes for a social work assessment - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+			{{serviceName}}
+		</h1>
+
+		<p class="govuk-body-l">
+			Social workers can use this service to securely record notes about a social work assessment.
+		</p>
+
+		<p>
+			You can:
+		</p>
+
+		<ul class="govuk-list govuk-list--bullet">
+			<li>record events</li>
+			<li>see a timeline of events</li>
+			<li>attach photos and other files</li>
+		</ul>
+
+		<h2 class="govuk-heading-m">
+			Before you start
+		</h2>
+		<p>
+			You'll only be able to use this service if your Local authority is part of this Alpha.
+		</p>
+
+		<p>
+			You must use your local authority email address to access this service.
+		</p>		
+
+		<p>
+			{{govukButton({
+				classes: "govuk-!-margin-top-4",
+				text: "Start now",
+				href: "email-address",
+				isStartButton: true
+			})}}
+		</p>
+	</div>
+</div>
+{% endblock %}

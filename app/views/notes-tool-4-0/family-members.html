@@ -1,0 +1,69 @@
+
+{% extends "./layout_no-gov.html" %}
+
+{% block pageTitle %}
+Family members - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			<h1 class="govuk-heading-xl">
+				Family members present
+			</h1>
+
+			{% for familyMember in data['family-members'] %}
+			<p>
+				{{familyMember}}
+			</p>
+			{% endfor %}
+
+			{{ govukRadios({
+				idPrefix: "add-more-family",
+				name: "add-more-family",
+				fieldset: 
+				{
+					legend: 
+					{
+						text: "Have you finished adding family members?",
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend--l govuk-!-margin-top-8"
+					}
+				},
+				hint: 
+				{
+					text: ""
+				},
+				items: [
+				{
+					value: "yes",
+					text: "Yes"
+				},
+				{
+					value: "no",
+					text: "No, I need to add more"
+				}
+				]
+			}) }}
+
+			<p>
+				{{govukButton({
+					text: "Save and continue"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

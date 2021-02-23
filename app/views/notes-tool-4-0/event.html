@@ -1,0 +1,75 @@
+{% extends "./layout_no-gov.html" %}
+
+{% block pageTitle %}
+{{event.type}} - {{data['child'] or "Child A"}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			{{event.type}}
+			<span class="govuk-caption-m">
+				{{event.datetime.split('T')[0] | formatDate('D MMMM YYYY')}} {{"at " + event.datetime | formatDate('h:mma') if event.datetime.split('T')[1].length}}
+			</span>
+		</h1>
+
+		<h2 class="govuk-heading-m">
+			Notes
+		</h2>		
+		<p>
+			{% if event['detailed-notes'].length %}
+			{{event['detailed-notes'] | striptags(true) | escape | nl2br}}
+			{% else %}
+			No notes added.
+			{% endif %}
+		</p>
+
+		<h2 class="govuk-heading-m">
+			Family
+		</h2>
+		<p>
+			{% if event['family'].length %}
+			{% for familyMember in event['family'] %}
+			<ul class="govuk-list">
+				<li>{{familyMember}}</li>
+			</ul>
+			{% endfor %}
+			{% else %}
+			No family added.
+			{% endif %}
+		</p>
+
+		<h2 class="govuk-heading-m">
+			Attachments
+		</h2>				
+		{% if event['attachments'].length %}
+		<div class="govuk-grid-row">
+			{% for attachment in event['attachments'] %}
+			<div class="govuk-grid-column-one-half">
+				<p>
+					<a href="https://dummyimage.com/600x400/666/fff&text=Example" target="_blank"><img src="https://dummyimage.com/600x400/666/fff&text=Example" alt="{{attachment}}" width="100%"></a>
+				</p>
+			</div>
+			{% endfor %}
+		</div>
+		{% else %}
+		<p>No attachments.</p>
+		{% endif %}
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,124 @@
+
+{% extends "./layout_no-gov.html" %}
+
+{% block pageTitle %}
+Event type - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{% set otherInput %}
+			{{ govukInput({
+				label:
+				{
+					text: "Event",
+					classes: "govuk-label--s",
+					isPageHeading: false
+				},
+				id: "other-event",
+				name: "other-event"
+			}) }}
+			{% endset %}
+
+			{{ govukRadios({
+				idPrefix: "event-type",
+				name: "event-type",
+				fieldset: 
+				{
+					legend: 
+					{
+						text: "What was the event?",
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend--xl"
+					}
+				},
+				hint: 
+				{
+					text: ""
+				},
+				items: [
+				{
+					value: "Home visit",
+					text: "Home visit",
+					attributes:
+					{
+						required: "required"
+					}
+				},
+				{
+					value: "Meeting",
+					text: "Meeting",
+					attributes:
+					{
+						required: "required"
+					}
+				},
+				{
+					value: "Telephone call (out)",
+					text: "Telephone call (out)",
+					attributes:
+					{
+						required: "required"
+					}
+				},
+				{
+					value: "Telephone call (in)",
+					text: "Telephone call (in)",
+					attributes:
+					{
+						required: "required"
+					}
+				},
+				{
+					value: "Letter (out)",
+					text: "Letter (out)",
+					attributes:
+					{
+						required: "required"
+					}
+				},
+				{
+					value: "Letter (in)",
+					text: "Letter (in)",
+					attributes:
+					{
+						required: "required"
+					}
+				},
+				{
+					value: "Other",
+					text: "Other",
+					conditional:
+					{
+						html: otherInput
+					},
+					attributes:
+					{
+						required: "required"
+					}
+				}
+				]
+			}) }}
+
+			<p>
+				{{govukButton({
+					text: "Save and continue"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

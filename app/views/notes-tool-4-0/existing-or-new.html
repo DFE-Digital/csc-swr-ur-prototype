@@ -1,0 +1,78 @@
+
+{% extends "./layout_no-gov.html" %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{% set notesInputHtml %}
+			{{ govukInput({
+				label:
+				{
+					text: "Enter secure code",
+					isPageHeading: false
+				},
+				classes: "govuk-input--width-20",
+				hint:
+				{
+					text: ""
+				},
+				id: "notes-id",
+				name: "notes-id",
+				spellcheck: false
+			}) }}
+			{% endset %}
+
+			{{ govukRadios({
+				idPrefix: "existing-new",
+				name: "existing-new",
+				fieldset: 
+				{
+					legend: 
+					{
+						text: "Are you starting a new assessment visit?",
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend--xl"
+					}
+				},
+				hint: 
+				{
+					text: ""
+				},
+				items: [
+				{
+					value: "yes",
+					text: "Yes"
+				},
+				{
+					value: "no",
+					text: "No, I need to access existing notes",
+					conditional:
+					{
+						html: notesInputHtml
+					}
+				}
+				]
+			}) }}
+
+			<p>
+				{{govukButton({
+					text: "Continue",
+					href: "email-address"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

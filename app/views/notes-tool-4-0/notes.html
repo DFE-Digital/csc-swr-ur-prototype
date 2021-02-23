@@ -1,0 +1,78 @@
+
+{% extends "./layout_no-gov.html" %}
+
+{% block pageTitle %}
+Notes - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			<h1 class="govuk-heading-xl">
+				Notes
+			</h1>
+
+			{{ govukInput({
+				label:
+				{
+					text: "Short description of the event",
+					classes: "govuk-label--s",
+					isPageHeading: false
+				},
+				id: "event-type",
+				name: "event-type"
+			}) }}
+
+			{% set hint %}
+			<p>A brief description of conversations, including:</p>
+			<ul class="govuk-list govuk-list--bullet">
+				<li>important comments</li>
+				<li>statements</li>
+				<li>decisions</li>
+				<li>questions and answers</li>
+			</ul>
+			{% endset %}
+
+			{{ govukTextarea({
+				name: "detailed-notes",
+				id: "detailed-notes",
+				label:
+				{
+					text: "What happened? (optional)",
+					classes: "govuk-label--s",
+					isPageHeading: false
+				},
+				rows: "16",
+				hint:
+				{
+					html: ''
+				}
+			}) }}
+
+			{{govukButton({
+				text: "Add an audio file to transcribe",
+				classes: "govuk-button--secondary govuk-!-margin-bottom-8",
+				href: "not-built-yet"
+			})}}
+
+			<p class="govuk-!-margin-bottom-0">
+				{{govukButton({
+					text: "Save and continue"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+
+{% extends "./layout_no-gov.html" %}
+
+{% block pageTitle %}
+File upload complete - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		{{ govukPanel({
+			titleText: "Your files have been uploaded",
+			attributes:
+			{
+				style: "background: #1d70b8"
+			}
+		}) }}
+
+		<p class="govuk-body govuk-!-margin-top-6">
+			{{govukButton({
+				text: "Continue",
+				href: "check-your-answers"
+			})}}
+		</p>
+	</div>
+</div>
+</div>
+{% endblock %}

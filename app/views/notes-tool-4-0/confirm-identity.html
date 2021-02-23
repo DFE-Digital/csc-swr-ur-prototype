@@ -1,0 +1,55 @@
+
+{% extends "./layout_no-gov.html" %}
+
+{% block pageTitle %}
+Enter the code we sent your email address - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			<h1 class="govuk-heading-xl">
+				Enter the code we sent your email address
+			</h1>
+			{{ govukInput({
+				label:
+				{
+					text: "Secure code",
+					isPageHeading: false
+				},
+				classes: "govuk-input--width-20",
+				hint:
+				{
+					text: ""
+				},
+				id: "secure-code",
+				name: "secure-code",
+				spellcheck: false
+			}) }}
+
+			<p>
+				{{govukButton({
+					text: "Continue",
+					href: "select-case"
+				})}}
+			</p>
+
+			<p>
+				<a href="#">Send secure code again</a>
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

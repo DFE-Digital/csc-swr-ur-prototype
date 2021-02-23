@@ -1,0 +1,48 @@
+
+{% extends "./layout_no-gov.html" %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{{ govukTextarea({
+				name: "actions",
+				id: "actions",
+				label:
+				{
+					text: "What actions are required? (optional)",
+					classes: "govuk-label--xl",
+					isPageHeading: true
+				},
+				rows: "16",
+				hint:
+				{
+					text: "Include any follow up requirements. For example, calling back with information, or responding to a complaint."
+				}
+			}) }}
+
+			{{govukButton({
+				text: "Add an audio file to transcribe",
+				classes: "govuk-button--secondary govuk-!-margin-bottom-8"
+			})}}
+			
+			<p class="govuk-!-margin-bottom-0">
+				{{govukButton({
+					text: "Save and continue"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

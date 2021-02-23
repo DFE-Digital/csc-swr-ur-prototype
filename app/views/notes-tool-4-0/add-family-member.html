@@ -1,0 +1,76 @@
+
+{% extends "./layout_no-gov.html" %}
+
+{% block pageTitle %}
+Select family members - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{{ govukCheckboxes({
+				idPrefix: "family-members",
+				name: "family-members",
+				classes: "govuk-checkboxes--small",
+				fieldset: 
+				{
+					legend: 
+					{
+						text: "Select all family members involved in this event",
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend--xl"
+					}
+				},
+				hint: 
+				{
+					text: ""
+				},
+				items: [
+				{
+					value: "Alice White",
+					text: "Alice White",
+					hint:
+					{
+						text: "Sister, 2 years old"
+					}
+				},
+				{
+					value: "Jenny Jones",
+					text: "Jenny Jones",
+					hint:
+					{
+						text: "Mum, 38 years old"
+					}
+				},
+				{
+					value: "Arthur Peters",
+					text: "Arthur Peters",
+					hint:
+					{
+						text: "Dad, 38 years old"
+					}
+				}
+				]
+			}) }}
+
+			<p>
+				{{govukButton({
+					text: "Save and continue"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

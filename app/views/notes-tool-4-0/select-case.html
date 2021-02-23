@@ -1,0 +1,75 @@
+
+{% extends "./layout_no-gov.html" %}
+
+{% block pageTitle %}
+Select a child's case - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{{ govukRadios({
+				idPrefix: "child",
+				name: "child",
+				fieldset: 
+				{
+					legend: 
+					{
+						text: "Select a child's case",
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend--xl"
+					}
+				},
+				hint: 
+				{
+					text: ""
+				},
+				items: [
+				{
+					value: "Ella Jones",
+					text: "Ella Jones",
+					hint:
+					{
+						text: "Born 23 January 2010 (11 years old)"
+					}
+				},
+				{
+					value: "Alex Peters",
+					text: "Alex Peters",
+					hint:
+					{
+						text: "Born 1 August 2016 (4 years old)"
+					}
+				},
+				{
+					value: "Julia White",
+					text: "Julia White",
+					hint:
+					{
+						text: "Born 3 March 2011 (9 years old)"
+					}
+				}
+				]
+			}) }}
+
+			<p>
+				{{govukButton({
+					text: "Save and continue"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}
