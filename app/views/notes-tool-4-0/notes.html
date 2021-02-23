@@ -28,7 +28,7 @@ Notes - GOV.UK
 				label:
 				{
 					text: "Short description of the event",
-					classes: "govuk-label--s",
+					classes: "govuk-label--m",
 					isPageHeading: false
 				},
 				id: "event-type",
@@ -51,7 +51,7 @@ Notes - GOV.UK
 				label:
 				{
 					text: "What happened? (optional)",
-					classes: "govuk-label--s",
+					classes: "govuk-label--m",
 					isPageHeading: false
 				},
 				rows: "16",
@@ -63,11 +63,26 @@ Notes - GOV.UK
 
 			{{govukButton({
 				text: "Add an audio file to transcribe",
-				classes: "govuk-button--secondary govuk-!-margin-bottom-8",
+				classes: "govuk-button--secondary govuk-!-margin-bottom-",
 				href: "not-built-yet"
 			})}}
 
-			<p class="govuk-!-margin-bottom-0">
+			{{govukCheckboxes({
+				idPrefix: "private",
+				name: "private",
+				hint:
+				{
+					text: ""
+				},
+				items: [
+				{
+					value: "true",
+					text: "Make this a private note"
+				}
+				]
+			})}}
+
+			<p class="govuk-!-margin-top-8">
 				{{govukButton({
 					text: "Save and continue"
 				})}}

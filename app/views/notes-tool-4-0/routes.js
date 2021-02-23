@@ -144,6 +144,14 @@ router.post('/notes', (req, res, next) => {
 	let detailedNotes = req.session.data['detailed-notes']
 	let eventType = req.session.data['event-type']
 
+	let private = req.session.data['private']
+
+	if(private == 'true'){
+		updateEvent(id, 'private', 'true', req, res)
+	} else {
+		updateEvent(id, 'private', 'false', req, res)
+	}
+
 	updateEvent(id, 'type', eventType, req, res)
 	updateEvent(id, 'detailed-notes', detailedNotes, req, res)
 
