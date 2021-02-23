@@ -18,6 +18,11 @@
 
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
+		{% if event.private == 'true' %}
+		<span class="govuk-tag govuk-tag--orange govuk-!-margin-bottom-2">
+			Private note
+		</span>
+		{% endif %}
 		<h1 class="govuk-heading-xl">
 			{{event.type}}
 			<span class="govuk-caption-m">
@@ -31,6 +36,28 @@
 		<p>
 			{% if event['detailed-notes'].length %}
 			{{event['detailed-notes'] | striptags(true) | escape | nl2br}}
+			{% else %}
+			No notes added.
+			{% endif %}
+		</p>
+
+		<h2 class="govuk-heading-m">
+			Analysis
+		</h2>		
+		<p>
+			{% if event['analysis'].length %}
+			{{event['analysis'] | striptags(true) | escape | nl2br}}
+			{% else %}
+			No notes added.
+			{% endif %}
+		</p>
+
+		<h2 class="govuk-heading-m">
+			Actions
+		</h2>		
+		<p>
+			{% if event['actions'].length %}
+			{{event['actions'] | striptags(true) | escape | nl2br}}
 			{% else %}
 			No notes added.
 			{% endif %}

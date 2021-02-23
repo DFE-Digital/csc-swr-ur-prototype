@@ -142,6 +142,8 @@ router.post('/other-family-present', (req, res, next) => {
 router.post('/notes', (req, res, next) => {
 	let id = req.session.data['id']
 	let detailedNotes = req.session.data['detailed-notes']
+	let analysis = req.session.data['analysis']
+	let actions = req.session.data['actions']
 	let eventType = req.session.data['event-type']
 
 	let private = req.session.data['private']
@@ -152,6 +154,8 @@ router.post('/notes', (req, res, next) => {
 		updateEvent(id, 'private', 'false', req, res)
 	}
 
+	updateEvent(id, 'analysis', analysis, req, res)
+	updateEvent(id, 'actions', actions, req, res)
 	updateEvent(id, 'type', eventType, req, res)
 	updateEvent(id, 'detailed-notes', detailedNotes, req, res)
 

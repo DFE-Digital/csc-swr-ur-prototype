@@ -24,15 +24,48 @@ Notes - GOV.UK
 				Notes
 			</h1>
 
-			{{ govukInput({
+			{{ govukSelect({
+				id: "event-type",
+				name: "event-type",
 				label:
 				{
-					text: "Short description of the event",
-					classes: "govuk-label--m",
-					isPageHeading: false
+					text: "Event type",
+					classes: "govuk-label--m"
 				},
-				id: "event-type",
-				name: "event-type"
+				items: [
+				{
+					value: "Home visit",
+					text: "Home visit"
+				},
+				{
+					value: "Meeting",
+					text: "Meeting"
+				},
+				{
+					value: "Telephone call (out)",
+					text: "Telephone call (out)"
+				},
+				{
+					value: "Telephone call (in)",
+					text: "Telephone call (in)"
+				},
+				{
+					value: "Statutory Child protection (CP) visit",
+					text: "Statutory Child protection (CP) visit"
+				},
+				{
+					value: "Statutory Looked After Child (LAC) visit",
+					text: "Statutory Looked After Child (LAC) visit"
+				},
+				{
+					value: "Child in need (CIN) visit",
+					text: "Child in need (CIN) visit"
+				},
+				{
+					value: "General check in",
+					text: "General check in"
+				}
+				]
 			}) }}
 
 			{% set hint %}
@@ -50,22 +83,54 @@ Notes - GOV.UK
 				id: "detailed-notes",
 				label:
 				{
-					text: "What happened? (optional)",
+					text: "What happened (optional)",
 					classes: "govuk-label--m",
 					isPageHeading: false
 				},
-				rows: "16",
+				rows: "12",
 				hint:
 				{
 					html: ''
 				}
 			}) }}
 
-			{{govukButton({
+			<!-- {{govukButton({
 				text: "Add an audio file to transcribe",
-				classes: "govuk-button--secondary govuk-!-margin-bottom-",
+				classes: "govuk-button--secondary govuk-!-margin-bottom-9",
 				href: "not-built-yet"
-			})}}
+			})}} -->
+
+			{{ govukTextarea({
+				name: "analysis",
+				id: "analysis",
+				label:
+				{
+					text: "Analysis (optional)",
+					classes: "govuk-label--m",
+					isPageHeading: false
+				},
+				rows: "12",
+				hint:
+				{
+					html: ''
+				}
+			}) }}
+
+			{{ govukTextarea({
+				name: "actions",
+				id: "actions",
+				label:
+				{
+					text: "Actions (optional)",
+					classes: "govuk-label--m",
+					isPageHeading: false
+				},
+				rows: "12",
+				hint:
+				{
+					html: ''
+				}
+			}) }}
 
 			{{govukCheckboxes({
 				idPrefix: "private",
@@ -90,4 +155,15 @@ Notes - GOV.UK
 		</form>
 	</div>
 </div>
+{% endblock %}
+
+{% block pageScripts %}
+<script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
+<script>
+	accessibleAutocomplete.enhanceSelectElement({
+		defaultValue: '',
+		selectElement: document.querySelector('#event-type'),
+		autoselect: true
+	})
+</script>
 {% endblock %}

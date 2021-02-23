@@ -56,28 +56,7 @@ Review event details - GOV.UK
 			{
 				key:
 				{
-					text: "Event description"
-				},
-				value:
-				{
-					text: event['type']
-				},
-				actions:
-				{
-					items: [
-					{
-						classes: "govuk-link--no-visited-state",
-						href: "notes?cya=true",
-						text: "Change",
-						visuallyHiddenText: "name"
-					}
-					]
-				}
-			},
-			{
-				key:
-				{
-					text: "Event date"
+					text: "Date"
 				},
 				value:
 				{
@@ -98,39 +77,18 @@ Review event details - GOV.UK
 			{
 				key:
 				{
-					text: "Event time"
+					text: "Type"
 				},
 				value:
 				{
-					text: eventTime
+					text: event['type']
 				},
 				actions:
 				{
 					items: [
 					{
 						classes: "govuk-link--no-visited-state",
-						href: "event-time?cya=true",
-						text: "Change",
-						visuallyHiddenText: "name"
-					}
-					]
-				}
-			},
-			{
-				key:
-				{
-					text: "Family present"
-				},
-				value:
-				{
-					html: familyMembers
-				},
-				actions:
-				{
-					items: [
-					{
-						classes: "govuk-link--no-visited-state",
-						href: "other-family-present?cya=true",
+						href: "notes?cya=true",
 						text: "Change",
 						visuallyHiddenText: "name"
 					}
@@ -152,6 +110,69 @@ Review event details - GOV.UK
 					{
 						classes: "govuk-link--no-visited-state",
 						href: "notes?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			},
+			{
+				key:
+				{
+					text: "Analysis"
+				},
+				value:
+				{
+					text: event['analysis'] or "-"
+				},
+				actions:
+				{
+					items: [
+					{
+						classes: "govuk-link--no-visited-state",
+						href: "notes?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			},
+			{
+				key:
+				{
+					text: "Actions"
+				},
+				value:
+				{
+					text: event['actions'] or "-"
+				},
+				actions:
+				{
+					items: [
+					{
+						classes: "govuk-link--no-visited-state",
+						href: "notes?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			},
+			{
+				key:
+				{
+					text: "Family present"
+				},
+				value:
+				{
+					html: familyMembers
+				},
+				actions:
+				{
+					items: [
+					{
+						classes: "govuk-link--no-visited-state",
+						href: "other-family-present?cya=true",
 						text: "Change",
 						visuallyHiddenText: "name"
 					}
