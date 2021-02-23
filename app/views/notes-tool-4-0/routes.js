@@ -101,7 +101,7 @@ router.post('/event-date', (req, res, next) => {
 		updateEvent(id, 'datetime', date, req, res)
 	}
 
-	res.redirect('other-family-present')
+	res.redirect('notes')
 })
 
 router.post('/event-time', (req, res, next) => {
@@ -135,7 +135,7 @@ router.post('/other-family-present', (req, res, next) => {
 	if(req.session.data['other-family-present'] == 'yes'){
 		res.redirect('add-family-member')
 	} else {
-		res.redirect('notes')
+		res.redirect('attachments')
 	}
 })
 
@@ -147,7 +147,7 @@ router.post('/notes', (req, res, next) => {
 	updateEvent(id, 'type', eventType, req, res)
 	updateEvent(id, 'detailed-notes', detailedNotes, req, res)
 
-	res.redirect('attachments')
+	res.redirect('other-family-present')
 })
 
 router.post('/add-family-member', (req, res, next) => {
@@ -163,7 +163,7 @@ router.post('/family-members', (req, res, next) => {
 
 		updateEvent(id, 'family', familyMembers, req, res)
 
-		res.redirect('notes')
+		res.redirect('attachments')
 	}
 })
 
