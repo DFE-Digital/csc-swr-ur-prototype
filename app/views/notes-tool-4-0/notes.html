@@ -32,7 +32,15 @@ Notes - GOV.UK
 					text: "Event type",
 					classes: "govuk-label--m"
 				},
+				hint:
+				{
+					text: 'Select or search for an event type'
+				},
 				items: [
+				{
+					value: "",
+					text: ""
+				},
 				{
 					value: "Home visit",
 					text: "Home visit"
@@ -160,10 +168,25 @@ Notes - GOV.UK
 {% block pageScripts %}
 <script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
 <script>
+	function toggleClearLink(val) {
+		let clearLink = document.createElement("p")
+		clearLink.classList.add("govuk-!-margin-top-3")
+		clearLink.innerHTML = '<button class="govuk-button govuk-button--secondary">Clear selection</button>';
+
+		if(val == undefined){
+			let state = 'hidden'
+			console.log(state)
+		} else {
+			let referenceNode = document.getElementById("event-type");
+			referenceNode.parentNode.appendChild(clearLink);
+		}
+	}
+
 	accessibleAutocomplete.enhanceSelectElement({
 		defaultValue: '',
 		selectElement: document.querySelector('#event-type'),
-		autoselect: true
+		autoselect: false,
+		showAllValues: true
 	})
 </script>
 {% endblock %}

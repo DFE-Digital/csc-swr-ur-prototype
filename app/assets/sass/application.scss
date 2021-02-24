@@ -20,6 +20,7 @@ $govuk-assets-path: '/govuk/assets/';
 @import "patterns/hmrc-timeline";
 @import "components/hmcts-search";
 @import "components/accessible-autocomplete";
+@import "components/autocomplete__dropdown-arrow";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
 .govuk-header--no-logo {
