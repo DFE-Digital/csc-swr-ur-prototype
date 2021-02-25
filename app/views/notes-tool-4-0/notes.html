@@ -25,6 +25,10 @@ Notes - GOV.UK
 			</h1>
 
 			{{ govukSelect({
+				formGroup:
+				{
+					classes: "govuk-!-margin-bottom-2"
+				},
 				id: "event-type",
 				name: "event-type",
 				label:
@@ -79,6 +83,8 @@ Notes - GOV.UK
 				}
 				]
 			}) }}
+
+			<a href="#" class="govuk-!-margin-bottom-6 govuk-!-display--block" id="clear-event-type">Clear</a>
 
 			{% set hint %}
 			<p>A brief description of conversations, including:</p>
@@ -171,24 +177,10 @@ Notes - GOV.UK
 
 {% block pageScripts %}
 <script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
+<script type="text/javascript" src="/public/javascripts/autocomplete.js"></script>
 <script>
-	function toggleClearLink(val) {
-		let clearLink = document.createElement("p")
-		clearLink.classList.add("govuk-!-margin-top-3")
-		clearLink.innerHTML = '<button class="govuk-button govuk-button--secondary">Clear selection</button>';
-
-		if(val == undefined){
-			let state = 'hidden'
-			console.log(state)
-		} else {
-			let referenceNode = document.getElementById("event-type");
-			referenceNode.parentNode.appendChild(clearLink);
-		}
-	}
-
-	accessibleAutocomplete.enhanceSelectElement({
+	simpleAccessibleAutocomplete ('event-type', {
 		defaultValue: '',
-		selectElement: document.querySelector('#event-type'),
 		autoselect: false,
 		showAllValues: true
 	})

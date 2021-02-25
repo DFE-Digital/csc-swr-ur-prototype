@@ -23,12 +23,16 @@
 			Private note
 		</span>
 		{% endif %}
-		<h1 class="govuk-heading-xl">
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
 			{{event.type}}
 			<span class="govuk-caption-m">
 				{{event.datetime.split('T')[0] | formatDate('D MMMM YYYY')}} {{"at " + event.datetime | formatDate('h:mma') if event.datetime.split('T')[1].length}}
 			</span>
 		</h1>
+
+		<p>
+			<a href="event?id={{event.id}}" class="govuk-button govuk-button--secondary">Edit event</a>
+		</p>
 
 		<h2 class="govuk-heading-m">
 			Notes
