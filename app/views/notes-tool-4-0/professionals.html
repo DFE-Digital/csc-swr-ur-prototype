@@ -20,6 +20,24 @@ Add professionals - GOV.UK
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-two-thirds">
 		<form method="post">
+			{% set inputHtml %}
+			{{ govukTextarea({
+				name: "professionals",
+				id: "professionals",
+				label:
+				{
+					text: "Professionals involved",
+					classes: "govuk-label--m",
+					isPageHeading: false
+				},
+				rows: "12",
+				hint:
+				{
+					html: ''
+				}
+			}) }}
+			{% endset %}
+
 			{{ govukRadios({
 				idPrefix: "add-professionals",
 				name: "add-professionals",
@@ -40,6 +58,10 @@ Add professionals - GOV.UK
 				{
 					value: "yes",
 					text: "Yes",
+					conditional:
+					{
+						html: inputHtml
+					},
 					attributes:
 					{
 						required: "required"
