@@ -19,26 +19,6 @@ Case notes for {{data['child'] or "Child A"}} - GOV.UK
 			</span>
 		</h1>
 		
-		<!-- <div class="hmcts-search govuk-!-margin-bottom-8">
-			<form action="" method="get">
-				<div class="govuk-form-group">
-					<label class="govuk-label hmcts-search__label govuk-label--m" for="bill">
-						Search
-					</label>
-
-					<span id="bill-hint" class="govuk-hint hmcts-search__hint ">
-						You can search for keywords, family members and attachments
-					</span>
-
-					<input class="govuk-input hmcts-search__input " id="bill" name="bill" type="search" aria-describedby="bill-hint">
-				</div>
-
-				<button class="govuk-button hmcts-search__button govuk-button--secondary " data-module="govuk-button">
-					Search
-				</button>
-			</form>
-		</div> -->
-
 		{% if data['events'].length %}
 		<form method="post" action="create-event">
 			<p>
@@ -48,6 +28,26 @@ Case notes for {{data['child'] or "Child A"}} - GOV.UK
 			</p>
 		</form>
 		{% endif %}
+
+		<div class="hmcts-search govuk-!-margin-bottom-8">
+			<form action="" method="get">
+				<div class="govuk-form-group">
+					<label class="govuk-label hmcts-search__label govuk-label--m" for="search">
+						Search events
+					</label>
+
+					<!-- <span id="search-hint" class="govuk-hint hmcts-search__hint ">
+						You can search for keywords, family members and attachments
+					</span> -->
+
+					<input class="govuk-input hmcts-search__input " id="search" name="search" type="search" aria-describedby="search-hint">
+				</div>
+
+				<button class="govuk-button hmcts-search__button govuk-button--secondary " data-module="govuk-button">
+					Search
+				</button>
+			</form>
+		</div>
 
 		<h2 class="govuk-heading-l">
 			Events recorded so far
@@ -64,7 +64,7 @@ Case notes for {{data['child'] or "Child A"}} - GOV.UK
 				{% endif %}
 				<h2 class="hmrc-timeline-event-title govuk-heading-m govuk-!-margin-bottom-3">
 					{{event.type}}
-					<span class="hmrc-timeline-event-meta govuk-caption-m govuk-!-font-size-16">
+					<span class="hmrc-timeline-event-meta govuk-caption-m govuk-!-font-size-1">
 						{{event.datetime.split('T')[0] | formatDate('D MMMM YYYY')}} {{"at " + event.datetime | formatDate('h:mma') if event.datetime.split('T')[1].length}}
 					</span>
 				</h2>
