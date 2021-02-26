@@ -90,7 +90,7 @@
 			{% for attachment in event['attachments'] %}
 			<div class="govuk-grid-column-one-half">
 				<p>
-					<img src="/public/images/{{attachment}}" width="100%" alt="An example of a photograph attachment.">
+					<a href="/public/images/{{attachment}}" target="_blank"><img src="/public/images/{{attachment}}" width="100%" alt="An example of a photograph attachment."></a>
 				</p>
 			</div>
 			{% endfor %}

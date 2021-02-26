@@ -227,7 +227,7 @@ router.post('/attachments', (req, res, next) => {
 
 router.post('/new-media-file', (req, res, next) => {
 	let id = req.session.data['id']
-	let attachments = ['IMG2081.jpg', 'IMG2092.jpg']
+	let attachments = ['drawing-3.jpg']
 
 	updateEvent(id, 'attachments', attachments, req, res)
 

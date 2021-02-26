@@ -39,7 +39,7 @@ module.exports = {
     "family-members": [],
     'attachments': [
       'drawing-2.jpg',
-      'drawing-3.jpg'
+      'genogram.jpg'
     ]
   },
   {
