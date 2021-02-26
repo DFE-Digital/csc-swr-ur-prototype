@@ -59,7 +59,7 @@ Case notes for {{data['child'] or "Child A"}} - GOV.UK
 			<li class="hmrc-timeline-event">
 				{% if event.private == 'true' %}
 				<span class="govuk-tag govuk-tag--orange govuk-!-margin-bottom-2">
-					Private note
+					Draft
 				</span>
 				{% endif %}
 				<h2 class="hmrc-timeline-event-title govuk-heading-m govuk-!-margin-bottom-3">
@@ -73,6 +73,19 @@ Case notes for {{data['child'] or "Child A"}} - GOV.UK
 					<p>
 						{{event['detailed-notes'] | striptags(true) | escape | nl2br | truncate(240)}}
 					</p>
+
+					{% if event['attachments'].length %}
+					<div class="govuk-grid-row">
+						{% for attachment in event['attachments'] %}
+						<div class="govuk-grid-column-one-third">
+							<p>
+								<img src="https://dummyimage.com/600x400/666/fff&text=Photo" alt="{{attachment}}" width="100%">
+							</p>
+						</div>
+						{% endfor %}
+					</div>
+					{% endif %}
+
 					<p>
 						<a href="event?id={{event.id}}">View event</a>
 					</p>

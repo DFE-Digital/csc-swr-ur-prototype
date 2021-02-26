@@ -20,7 +20,7 @@
 	<div class="govuk-grid-column-two-thirds">
 		{% if event.private == 'true' %}
 		<span class="govuk-tag govuk-tag--orange govuk-!-margin-bottom-2">
-			Private note
+			Draft
 		</span>
 		{% endif %}
 		<h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
@@ -90,7 +90,7 @@
 			{% for attachment in event['attachments'] %}
 			<div class="govuk-grid-column-one-half">
 				<p>
-					<a href="https://dummyimage.com/600x400/666/fff&text=Example" target="_blank"><img src="https://dummyimage.com/600x400/666/fff&text=Example" alt="{{attachment}}" width="100%"></a>
+					<a href="https://dummyimage.com/600x400/666/fff&text=Photo" target="_blank"><img src="https://dummyimage.com/600x400/666/fff&text=Photo" alt="{{attachment}}" width="100%"></a>
 				</p>
 			</div>
 			{% endfor %}
