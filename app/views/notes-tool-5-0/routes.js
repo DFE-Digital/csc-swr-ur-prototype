@@ -22,6 +22,16 @@ router.post('/select-case', (req, res, next) => {
 	res.redirect('assessment-notes')
 })
 
+router.get('/assessment-notes', (req, res, next) => {
+// when we confirm the answers we need to sort the events by date
+	// from https://stackoverflow.com/questions/10123953/how-to-sort-an-object-array-by-date-property
+	req.session.data['events'].sort(function(a,b){
+		return new Date(b.datetime) - new Date(a.datetime);
+	});
+
+	res.render(`${req.version}/assessment-notes`)
+})
+
 router.get('/event', (req, res, next) => {
 	let id = req.session.data['id']
 
@@ -45,7 +55,12 @@ router.post('/create-event', (req, res, next) => {
 	// push the object into the events array in our session data
 	req.session.data['events'].push(event)
 
-	res.redirect('event-date')
+	// redirect to the right page
+	if(req.session.data['create-new'] == 'event'){
+		res.redirect('event-date')
+	} else {
+		res.redirect('quick-note')
+	}
 })
 
 // use this function to update the events object
@@ -129,6 +144,19 @@ router.post('/event-time', (req, res, next) => {
 	updateEvent(id, 'datetime', datetime, req, res)
 
 	res.redirect('other-family-present')
+})
+
+router.post('/quick-note', (req, res, next) => {
+	let id = req.session.data['id']
+	let noteContent = req.session.data['quick-note']
+	let format = "YYYY-MM-DD"
+	let date = moment().format(format)
+
+	updateEvent(id, 'datetime', date, req, res)
+	updateEvent(id, 'content', noteContent, req, res)
+	updateEvent(id, 'type', 'Note', req, res)
+
+	res.redirect('assessment-notes')
 })
 
 router.post('/notes', (req, res, next) => {
@@ -248,12 +276,6 @@ router.get('/check-your-answers', (req, res, next) => {
 })
 
 router.post('/check-your-answers', (req, res, next) => {
-	// when we confirm the answers we need to sort the events by date
-	// from https://stackoverflow.com/questions/10123953/how-to-sort-an-object-array-by-date-property
-	req.session.data['events'].sort(function(a,b){
-		return new Date(b.datetime) - new Date(a.datetime);
-	});
-
 	res.redirect('confirmation-page')
 })
 

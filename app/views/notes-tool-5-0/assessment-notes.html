@@ -21,11 +21,18 @@ Case notes for {{data['child'] or "Child A"}} - GOV.UK
 		
 		{% if data['events'].length %}
 		<form method="post" action="create-event">
-			<p>
 				{{govukButton({
-					text: "Add an event"
+					name: "create-new",
+					text: "Add an event",
+					value: "event"
 				})}}
-			</p>
+
+				{{govukButton({
+					name: "create-new",
+					text: "Create a quick note",
+					classes: "govuk-button--secondary govuk-!-margin-left-3",
+					value: "quick-note"
+				})}}
 		</form>
 		{% endif %}
 
