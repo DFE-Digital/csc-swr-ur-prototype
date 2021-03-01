@@ -1,0 +1,223 @@
+
+{% extends "./layout_no-gov.html" %}
+
+{% block pageTitle %}
+Review event details - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+			Review event details
+		</h1>
+
+		{% set familyMembers %}
+		{% if event['family'].length %}
+		{% for familyMember in event['family'] %}
+		<p>
+			{{familyMember}}
+		</p>
+		{% endfor %}
+		{% else %}
+		-
+		{% endif %}
+		{% endset %}
+
+		{% set eventTime %}
+		{% set time = event.datetime.split('T')[1] %}
+		{{ event.datetime | formatDate('h:mma') if time.length else '-' }}
+		{% endset %}
+
+		{% set attachments %}
+		{% if event['attachments'].length %}
+		{% for attachment in event['attachments'] %}
+		<p>{{attachment}}</p>
+		{% endfor %}
+		{% else %}
+		-
+		{% endif %}
+		{% endset %}		
+
+		{{ govukSummaryList({
+			classes: 'govuk-!-margin-bottom-6',
+			rows: [
+			{
+				key:
+				{
+					text: "Date"
+				},
+				value:
+				{
+					text: event['datetime'] | formatDate('D MMMM YYYY')
+				},
+				actions:
+				{
+					items: [
+					{
+						classes: "govuk-link--no-visited-state",
+						href: "event-date?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			},
+			{
+				key:
+				{
+					text: "Type"
+				},
+				value:
+				{
+					text: event['type']
+				},
+				actions:
+				{
+					items: [
+					{
+						classes: "govuk-link--no-visited-state",
+						href: "notes?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			},
+			{
+				key:
+				{
+					text: "Notes"
+				},
+				value:
+				{
+					text: event['detailed-notes'] or "-"
+				},
+				actions:
+				{
+					items: [
+					{
+						classes: "govuk-link--no-visited-state",
+						href: "notes?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			},
+			{
+				key:
+				{
+					text: "Analysis"
+				},
+				value:
+				{
+					text: event['analysis'] or "-"
+				},
+				actions:
+				{
+					items: [
+					{
+						classes: "govuk-link--no-visited-state",
+						href: "notes?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			},
+			{
+				key:
+				{
+					text: "Actions"
+				},
+				value:
+				{
+					text: event['actions'] or "-"
+				},
+				actions:
+				{
+					items: [
+					{
+						classes: "govuk-link--no-visited-state",
+						href: "notes?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			},
+			{
+				key:
+				{
+					text: "Family present"
+				},
+				value:
+				{
+					html: familyMembers
+				},
+				actions:
+				{
+					items: [
+					{
+						classes: "govuk-link--no-visited-state",
+						href: "other-family-present?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			},
+			{
+				key:
+				{
+					text: "Attachments"
+				},
+				value:
+				{
+					html: attachments
+				},
+				actions:
+				{
+					items: [
+					{
+						classes: "govuk-link--no-visited-state",
+						href: "attachments?cya=true",
+						text: "Change",
+						visuallyHiddenText: "name"
+					}
+					]
+				}
+			}
+			]
+		}) }}
+
+		<h2 class="govuk-heading-m govuk-!-margin-top-8">
+			Now confirm and save this event
+		</h2>		
+
+		<p>
+			If you've added all the information you need to, you should confirm and save the event to the case for '{{data['child'] or 'Child A'}}'.
+		</p>
+
+		<form method="post">
+			<p>
+				{{govukButton({
+					text: "Confirm and save event"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

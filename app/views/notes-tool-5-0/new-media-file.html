@@ -1,0 +1,54 @@
+
+{% extends "./layout_no-gov.html" %}
+
+{% block pageTitle %}
+Upload files - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{% call govukFieldset({
+				legend:
+				{
+					text: "Upload a photo, video or other files",
+					classes: "govuk-fieldset__legend--xl",
+					isPageHeading: true
+				}
+			}) %}
+			{{ govukFileUpload({
+				id: "file-upload-1",
+				name: "file-upload-1",
+				label:
+				{
+					classes: "govuk-!-margin-top-6",
+					text: "Upload a file"
+				}
+			}) }}
+			{% endcall %}
+
+			<p>
+				Your uploaded files will be stored securely.
+			</p>
+
+			<p class="govuk-!-margin-bottom-0">
+				{{govukButton({
+					text: "Upload"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

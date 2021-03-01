@@ -1,0 +1,36 @@
+
+{% extends "./layout_no-gov.html" %}
+
+{% block pageTitle %}
+Event saved - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		{% set child = data['child'] or 'Child A' %}
+
+		{{ govukPanel({
+			classes: "govuk-!-margin-bottom-8",
+			titleText: "We've saved this event to the case for '" + child + "'"
+		}) }}
+
+		<p class="govuk-body govuk-!-margin-top-6">
+			{{govukButton({
+				text: "Return to case",
+				href: "assessment-notes?show-events=true"
+			})}}
+		</p>
+
+		<p class="govuk-body">
+			<a href="#" class="govuk-link">What did you think of this service?</a> (takes 30 seconds)
+		</p>
+	</div>
+</div>
+</div>
+{% endblock %}

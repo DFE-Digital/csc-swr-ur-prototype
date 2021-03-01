@@ -1,0 +1,116 @@
+{% extends "./layout_no-gov.html" %}
+
+{% block pageTitle %}
+Case notes for {{data['child'] or "Child A"}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			{{data['child'] or "Child A"}}
+			<span class="govuk-caption-m">
+				Case: 70037619
+			</span>
+		</h1>
+		
+		{% if data['events'].length %}
+		<form method="post" action="create-event">
+			<p>
+				{{govukButton({
+					text: "Add an event"
+				})}}
+			</p>
+		</form>
+		{% endif %}
+
+		<div class="hmcts-search govuk-!-margin-bottom-8">
+			<form action="" method="get">
+				<div class="govuk-form-group">
+					<label class="govuk-label hmcts-search__label govuk-label--m" for="search">
+						Search events
+					</label>
+
+					<!-- <span id="search-hint" class="govuk-hint hmcts-search__hint ">
+						You can search for keywords, family members and attachments
+					</span> -->
+
+					<input class="govuk-input hmcts-search__input " id="search" name="search" type="search" aria-describedby="search-hint">
+				</div>
+
+				<button class="govuk-button hmcts-search__button govuk-button--secondary " data-module="govuk-button">
+					Search
+				</button>
+			</form>
+		</div>
+
+		<h2 class="govuk-heading-l">
+			Events recorded so far
+		</h2>
+
+		{% if data['events'].length %}
+		<ol class="hmrc-timeline">
+			{% for event in data['events'] %}
+			<li class="hmrc-timeline-event">
+				{% if event.private == 'true' %}
+				<span class="govuk-tag govuk-tag--orange govuk-!-margin-bottom-2">
+					Draft
+				</span>
+				{% endif %}
+				<h2 class="hmrc-timeline-event-title govuk-heading-m govuk-!-margin-bottom-3">
+					{{event.type}}
+					<span class="hmrc-timeline-event-meta govuk-caption-m govuk-!-font-size-1">
+						{{event.datetime.split('T')[0] | formatDate('D MMMM YYYY')}} {{"at " + event.datetime | formatDate('h:mma') if event.datetime.split('T')[1].length}}
+					</span>
+				</h2>
+
+				<div class="hmrc-timeline-event-content">
+					<p>
+						{{event['detailed-notes'] | striptags(true) | escape | nl2br | truncate(240)}}
+					</p>
+
+					{% if event['attachments'].length %}
+					<div class="govuk-grid-row">
+						{% for attachment in event['attachments'] %}
+						<div class="govuk-grid-column-one-third">
+							<p>
+								<img src="/public/images/{{attachment}}" width="100%" alt="An example of a photograph attachment.">
+							</p>
+						</div>
+						{% endfor %}
+					</div>
+					{% endif %}
+
+					<p>
+						<a href="event?id={{event.id}}">View event</a>
+					</p>
+				</div>
+			</li>
+			{% endfor %}
+		</ol>
+
+		{% else %}
+		<p>
+			You have not added any events yet.
+		</p>
+		<form method="post" action="create-written-note">
+			<p>
+				{{govukButton({
+					text: "Add an event",
+					classes: "govuk-!-margin-top-4",
+					href: "event-type"
+				})}}
+			</p>
+		</form>
+		{% endif %}
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+	</div>
+</div>
+{% endblock %}

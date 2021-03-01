@@ -1,0 +1,106 @@
+{% extends "./layout_no-gov.html" %}
+
+{% block pageTitle %}
+{{event.type}} - {{data['child'] or "Child A"}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		{% if event.private == 'true' %}
+		<span class="govuk-tag govuk-tag--orange govuk-!-margin-bottom-2">
+			Draft
+		</span>
+		{% endif %}
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+			{{event.type}}
+			<span class="govuk-caption-m">
+				{{event.datetime.split('T')[0] | formatDate('D MMMM YYYY')}} {{"at " + event.datetime | formatDate('h:mma') if event.datetime.split('T')[1].length}}
+			</span>
+		</h1>
+
+		<p>
+			<a href="event?id={{event.id}}" class="govuk-button govuk-button--secondary">Edit event</a>
+		</p>
+
+		<h2 class="govuk-heading-m">
+			Notes
+		</h2>		
+		<p>
+			{% if event['detailed-notes'].length %}
+			{{event['detailed-notes'] | striptags(true) | escape | nl2br}}
+			{% else %}
+			No notes added.
+			{% endif %}
+		</p>
+
+		<h2 class="govuk-heading-m">
+			Analysis
+		</h2>		
+		<p>
+			{% if event['analysis'].length %}
+			{{event['analysis'] | striptags(true) | escape | nl2br}}
+			{% else %}
+			No notes added.
+			{% endif %}
+		</p>
+
+		<h2 class="govuk-heading-m">
+			Actions
+		</h2>		
+		<p>
+			{% if event['actions'].length %}
+			{{event['actions'] | striptags(true) | escape | nl2br}}
+			{% else %}
+			No notes added.
+			{% endif %}
+		</p>
+
+		<h2 class="govuk-heading-m">
+			Family
+		</h2>
+		<p>
+			{% if event['family'].length %}
+			{% for familyMember in event['family'] %}
+			<ul class="govuk-list">
+				<li>{{familyMember}}</li>
+			</ul>
+			{% endfor %}
+			{% else %}
+			No family added.
+			{% endif %}
+		</p>
+
+		<h2 class="govuk-heading-m">
+			Attachments
+		</h2>				
+		{% if event['attachments'].length %}
+		<div class="govuk-grid-row">
+			{% for attachment in event['attachments'] %}
+			<div class="govuk-grid-column-one-half">
+				<p>
+					<a href="/public/images/{{attachment}}" target="_blank"><img src="/public/images/{{attachment}}" width="100%" alt="An example of a photograph attachment."></a>
+				</p>
+			</div>
+			{% endfor %}
+		</div>
+		{% else %}
+		<p>No attachments.</p>
+		{% endif %}
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+	</div>
+</div>
+{% endblock %}

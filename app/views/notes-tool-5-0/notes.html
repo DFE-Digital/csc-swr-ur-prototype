@@ -1,0 +1,192 @@
+
+{% extends "./layout_no-gov.html" %}
+
+{% block pageTitle %}
+Notes - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			<h1 class="govuk-heading-xl">
+				Notes
+			</h1>
+
+			{{ govukSelect({
+				formGroup:
+				{
+					classes: "govuk-!-margin-bottom-2"
+				},
+				id: "event-type",
+				name: "event-type",
+				label:
+				{
+					text: "Event type",
+					classes: "govuk-label--m"
+				},
+				hint:
+				{
+					text: 'Select or search for an event type'
+				},
+				items: [
+				{
+					value: "",
+					text: ""
+				},
+				{
+					value: "Home visit",
+					text: "Home visit"
+				},
+				{
+					value: "Meeting",
+					text: "Meeting"
+				},
+				{
+					value: "Telephone call (out)",
+					text: "Telephone call (out)"
+				},
+				{
+					value: "Telephone call (in)",
+					text: "Telephone call (in)"
+				},
+				{
+					value: "Statutory Child protection (CP) visit",
+					text: "Statutory Child protection (CP) visit"
+				},
+				{
+					value: "Statutory Looked After Child (LAC) visit",
+					text: "Statutory Looked After Child (LAC) visit"
+				},
+				{
+					value: "Child in need (CIN) visit",
+					text: "Child in need (CIN) visit"
+				},
+				{
+					value: "General check in",
+					text: "General check in"
+				},
+				{
+					value: "Email",
+					text: "Email"
+				},
+				{
+					value: "Text message (SMS, WhatsApp or similar)",
+					text: "Text message (SMS, WhatsApp or similar)"
+				}
+				]
+			}) }}
+
+			<a href="#" class="govuk-!-margin-bottom-6 govuk-!-display--block" id="clear-event-type">Clear</a>
+
+			{% set hint %}
+			<p>A brief description of conversations, including:</p>
+			<ul class="govuk-list govuk-list--bullet">
+				<li>important comments</li>
+				<li>statements</li>
+				<li>decisions</li>
+				<li>questions and answers</li>
+			</ul>
+			{% endset %}
+
+			{{ govukTextarea({
+				name: "detailed-notes",
+				id: "detailed-notes",
+				label:
+				{
+					text: "What happened (optional)",
+					classes: "govuk-label--m",
+					isPageHeading: false
+				},
+				rows: "12",
+				hint:
+				{
+					html: ''
+				}
+			}) }}
+
+			<!-- {{govukButton({
+				text: "Add an audio file to transcribe",
+				classes: "govuk-button--secondary govuk-!-margin-bottom-9",
+				href: "not-built-yet"
+			})}} -->
+
+			{{ govukTextarea({
+				name: "analysis",
+				id: "analysis",
+				label:
+				{
+					text: "Analysis (optional)",
+					classes: "govuk-label--m",
+					isPageHeading: false
+				},
+				rows: "12",
+				hint:
+				{
+					html: ''
+				}
+			}) }}
+
+			{{ govukTextarea({
+				name: "actions",
+				id: "actions",
+				label:
+				{
+					text: "Actions (optional)",
+					classes: "govuk-label--m",
+					isPageHeading: false
+				},
+				rows: "12",
+				hint:
+				{
+					html: ''
+				}
+			}) }}
+
+			{{govukCheckboxes({
+				idPrefix: "private",
+				name: "private",
+				hint:
+				{
+					text: ""
+				},
+				items: [
+				{
+					value: "true",
+					text: "Save as draft"
+				}
+				]
+			})}}
+
+			<p class="govuk-!-margin-top-8">
+				{{govukButton({
+					text: "Save and continue"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}
+
+{% block pageScripts %}
+<script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
+<script type="text/javascript" src="/public/javascripts/autocomplete.js"></script>
+<script>
+	simpleAccessibleAutocomplete ('event-type', {
+		defaultValue: '',
+		autoselect: false,
+		showAllValues: true
+	})
+</script>
+{% endblock %}

@@ -1,0 +1,36 @@
+
+{% extends "./layout_no-gov.html" %}
+
+{% block pageTitle %}
+This page has not been built yet - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			<h1 class="govuk-heading-xl">
+				This hasn't been built yet
+			</h1>
+
+			<p>
+				{{govukButton({
+					text: "Return to previous page",
+					href: "javascript: window.history.go(-1)"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

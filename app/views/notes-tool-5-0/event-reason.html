@@ -1,0 +1,45 @@
+
+{% extends "./layout_no-gov.html" %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{{ govukTextarea({
+				name: "note-content",
+				id: "note-content",
+				label:
+				{
+					text: "What was the reason for this event?",
+					classes: "govuk-label--xl",
+					isPageHeading: true
+				},
+				rows: "6",
+				hint:
+				{
+					text: 'For example, "Telephone call to the health visitor
+to discuss a joint visit" or "letter from Doctor Smith with psychiatric report re: Mrs X"'
+				}
+			}) }}
+
+			<p class="govuk-!-margin-bottom-0">
+				{{govukButton({
+					text: "Save and continue",
+					href: "detailed-notes"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

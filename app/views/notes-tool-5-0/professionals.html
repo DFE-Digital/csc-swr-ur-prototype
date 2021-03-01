@@ -1,0 +1,89 @@
+
+{% extends "./layout_no-gov.html" %}
+
+{% block pageTitle %}
+Add professionals - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			{% set inputHtml %}
+			{{ govukTextarea({
+				name: "professionals",
+				id: "professionals",
+				label:
+				{
+					text: "Professionals involved",
+					classes: "govuk-label--m",
+					isPageHeading: false
+				},
+				rows: "12",
+				hint:
+				{
+					html: ''
+				}
+			}) }}
+			{% endset %}
+
+			{{ govukRadios({
+				idPrefix: "add-professionals",
+				name: "add-professionals",
+				fieldset: 
+				{
+					legend: 
+					{
+						text: "Were any professionals involved in this event?",
+						isPageHeading: true,
+						classes: "govuk-fieldset__legend--xl"
+					}
+				},
+				hint: 
+				{
+					text: ""
+				},
+				items: [
+				{
+					value: "yes",
+					text: "Yes",
+					conditional:
+					{
+						html: inputHtml
+					},
+					attributes:
+					{
+						required: "required"
+					}
+				},
+				{
+					value: "no",
+					text: "No",
+					attributes:
+					{
+						required: "required"
+					}
+				}
+				]
+			}) }}
+
+			<p>
+				{{govukButton({
+					text: "Save and continue"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

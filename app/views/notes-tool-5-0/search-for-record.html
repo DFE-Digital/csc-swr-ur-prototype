@@ -1,0 +1,51 @@
+
+{% extends "./layout_no-gov.html" %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<form method="post">
+			<h1 class="govuk-heading-xl">
+				Search for a record
+			</h1>
+			<p>
+				We'll search your CMS for matching records.
+			</p>
+			{{ govukInput({
+				label:
+				{
+					text: "Child's name",
+					isPageHeading: false
+				},
+				classes: "govuk-input--width-20",
+				hint:
+				{
+					text: ""
+				},
+				id: "search-name",
+				name: "search-name",
+				inputmode: "search",
+				spellcheck: false
+			}) }}
+
+			<p>
+				{{govukButton({
+					text: "Search",
+					href: "search-results"
+				})}}
+			</p>
+		</form>
+	</div>
+</div>
+{% endblock %}
