@@ -59,7 +59,6 @@ Case notes for {{data['child'] or "Child A"}} - GOV.UK
 		<h2 class="govuk-heading-l">
 			Events recorded so far
 		</h2>
-
 		{% if data['events'].length %}
 		<ol class="hmrc-timeline">
 			{% for event in data['events'] %}
@@ -69,6 +68,7 @@ Case notes for {{data['child'] or "Child A"}} - GOV.UK
 					Draft
 				</span>
 				{% endif %}
+
 				<h2 class="hmrc-timeline-event-title govuk-heading-m govuk-!-margin-bottom-3">
 					{{event.type}}
 					<span class="hmrc-timeline-event-meta govuk-caption-m govuk-!-font-size-1">
@@ -77,6 +77,11 @@ Case notes for {{data['child'] or "Child A"}} - GOV.UK
 				</h2>
 
 				<div class="hmrc-timeline-event-content">
+					{% if event['type'] == 'Note' %}
+					<p>
+						{{event['content'] | striptags(true) | escape | nl2br | truncate(240)}}
+					</p>
+					{% else %}
 					<p>
 						{{event['detailed-notes'] | striptags(true) | escape | nl2br | truncate(240)}}
 					</p>
@@ -92,9 +97,10 @@ Case notes for {{data['child'] or "Child A"}} - GOV.UK
 						{% endfor %}
 					</div>
 					{% endif %}
+					{% endif %}
 
 					<p>
-						<a href="event?id={{event.id}}">View event</a>
+						<a href="event?id={{event.id}}">View {{"event" if event['type'] != 'Note' else 'note' }}</a>
 					</p>
 				</div>
 			</li>
