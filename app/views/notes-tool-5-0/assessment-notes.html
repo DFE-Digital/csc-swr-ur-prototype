@@ -9,57 +9,164 @@ Case notes for {{data['child'] or "Child A"}} - GOV.UK
 {% endblock %}
 
 {% block content %}
-
 <div class="govuk-grid-row">
-	<div class="govuk-grid-column-two-thirds">
+	<div class="govuk-grid-column-full">
 		<h1 class="govuk-heading-xl">
 			{{data['child'] or "Child A"}}
 			<span class="govuk-caption-m">
 				Case: 70037619
 			</span>
 		</h1>
-		
-		{% if data['events'].length %}
-		<form method="post" action="create-event">
-				{{govukButton({
-					name: "create-new",
-					text: "Add an event",
-					value: "event"
-				})}}
+	</div>
+</div>
 
-				{{govukButton({
-					name: "create-new",
-					text: "Create a quick note",
-					classes: "govuk-button--secondary govuk-!-margin-left-3",
-					value: "quick-note"
-				})}}
-		</form>
-		{% endif %}
-
-		<div class="hmcts-search govuk-!-margin-bottom-8">
-			<form action="" method="get">
-				<div class="govuk-form-group">
-					<label class="govuk-label hmcts-search__label govuk-label--m" for="search">
-						Search events
-					</label>
-
-					<!-- <span id="search-hint" class="govuk-hint hmcts-search__hint ">
-						You can search for keywords, family members and attachments
-					</span> -->
-
-					<input class="govuk-input hmcts-search__input " id="search" name="search" type="search" aria-describedby="search-hint">
-				</div>
-
-				<button class="govuk-button hmcts-search__button govuk-button--secondary " data-module="govuk-button">
-					Search
-				</button>
-			</form>
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-one-third">
+		<div class="govuk-!-padding-top-2 govuk-!-padding-bottom-2 govuk-!-padding-right-4 govuk-!-padding-left-4" style="border: solid 1px lightgrey; border-bottom: 0 none">
+			<h2 class="govuk-heading-m govuk-!-margin-0">
+				Filter
+			</h2>
 		</div>
 
+		<div class="govuk-!-padding-4 govuk-!-padding-top-6" style="border: solid 1px lightgrey">
+			{{ govukInput({
+				formGroup:
+				{
+					classes: "govuk-!-margin-bottom-2"
+				},
+				label:
+				{
+					html: 'Keywords',
+					classes: "govuk-label--m",
+					isPageHeading: false
+				},
+				id: "event-name",
+				name: "event-name"
+			}) }}
+
+			{{ govukButton({
+				classes: "govuk-button--secondary",
+				text: "Search"
+			})}}
+
+			{{ govukCheckboxes({
+				idPrefix: "filter-type",
+				name: "filter-type",
+				classes: "govuk-checkboxes--small",
+				fieldset: 
+				{
+					legend: 
+					{
+						text: "Event type",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--m govuk-!-margin-bottom-1"
+					}
+				},
+				hint: 
+				{
+					text: ""
+				},
+				items: [
+				{
+					value: "",
+					text: ""
+				},
+				{
+					value: "Home visit",
+					text: "Home visit"
+				},
+				{
+					value: "Meeting",
+					text: "Meeting"
+				},
+				{
+					value: "Telephone call (out)",
+					text: "Telephone call (out)"
+				},
+				{
+					value: "Telephone call (in)",
+					text: "Telephone call (in)"
+				},
+				{
+					value: "Statutory Child protection (CP) visit",
+					text: "Statutory Child protection (CP) visit"
+				},
+				{
+					value: "Statutory Looked After Child (LAC) visit",
+					text: "Statutory Looked After Child (LAC) visit"
+				},
+				{
+					value: "Child in need (CIN) visit",
+					text: "Child in need (CIN) visit"
+				},
+				{
+					value: "General check in",
+					text: "General check in"
+				},
+				{
+					value: "Email",
+					text: "Email"
+				},
+				{
+					value: "Text message (SMS, WhatsApp or similar)",
+					text: "Text message (SMS, WhatsApp or similar)"
+				}
+				]
+			}) }}
+
+			{{ govukCheckboxes({
+				idPrefix: "filter-creator",
+				name: "filter-creator",
+				classes: "govuk-checkboxes--small",
+				fieldset: 
+				{
+					legend: 
+					{
+						text: "Added by",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--m govuk-!-margin-bottom-1"
+					}
+				},
+				hint: 
+				{
+					text: ""
+				},
+				items: [
+				{
+					value: "social-worker",
+					text: "You"
+				},
+				{
+					value: "Arthur White",
+					text: "Arthur White"
+				}
+				]
+			}) }}
+		</div>
+	</div>
+
+	<div class="govuk-grid-column-two-thirds">
 		<h2 class="govuk-heading-l">
 			Events recorded so far
 		</h2>
+
 		{% if data['events'].length %}
+		<form method="post" action="create-event">
+			{{govukButton({
+				name: "create-new",
+				text: "Add an event",
+				value: "event"
+			})}}
+
+			{{govukButton({
+				name: "create-new",
+				text: "Create a quick note",
+				classes: "govuk-button--secondary govuk-!-margin-left-3",
+				value: "quick-note"
+			})}}
+		</form>
+		<hr class="govuk-section-break govuk-section-break--visible govuk-section-break--s govuk-!-margin-bottom-8">
+
 		<ol class="hmrc-timeline">
 			{% for event in data['events'] %}
 			<li class="hmrc-timeline-event">
@@ -121,9 +228,6 @@ Case notes for {{data['child'] or "Child A"}} - GOV.UK
 			</p>
 		</form>
 		{% endif %}
-	</div>
-
-	<div class="govuk-grid-column-one-third">
 	</div>
 </div>
 {% endblock %}
