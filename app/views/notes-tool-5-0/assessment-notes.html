@@ -11,17 +11,12 @@ Case notes for {{data['child'] or "Child A"}} - GOV.UK
 {% block content %}
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-full">
-		<h1 class="govuk-heading-xl">
-			{{data['child'] or "Child A"}}
-			<span class="govuk-caption-m">
-				Case: 70037619
-			</span>
-		</h1>
+		
 	</div>
 </div>
 
 <div class="govuk-grid-row">
-	<div class="govuk-grid-column-one-third">
+	<div class="govuk-grid-column-one-third govuk-!-margin-bottom-6">
 		<div class="govuk-!-padding-top-2 govuk-!-padding-bottom-2 govuk-!-padding-right-4 govuk-!-padding-left-4" style="border: solid 1px lightgrey; border-bottom: 0 none">
 			<h2 class="govuk-heading-m govuk-!-margin-0">
 				Filter
@@ -146,26 +141,33 @@ Case notes for {{data['child'] or "Child A"}} - GOV.UK
 	</div>
 
 	<div class="govuk-grid-column-two-thirds">
-		<h2 class="govuk-heading-l">
-			Events recorded so far
-		</h2>
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-6">
+			{{data['child'] or "Child A"}}
+			<span class="govuk-caption-l">
+				Case: 70037619
+			</span>
+		</h1>
 
 		{% if data['events'].length %}
-		<form method="post" action="create-event">
+		<form method="post" action="create-event" class="govuk-!-margin-bottom-4">
 			{{govukButton({
 				name: "create-new",
 				text: "Add an event",
-				value: "event"
+				value: "event",
+				classes: "govuk-!-margin-right-3 govuk-!-display-inline-block"
 			})}}
 
 			{{govukButton({
 				name: "create-new",
 				text: "Create a quick note",
-				classes: "govuk-button--secondary govuk-!-margin-left-3",
+				classes: "govuk-button--secondary govuk-!-display-inline-block",
 				value: "quick-note"
 			})}}
 		</form>
-		<hr class="govuk-section-break govuk-section-break--visible govuk-section-break--s govuk-!-margin-bottom-8">
+
+		<h2 class="govuk-heading-l">
+			{{data['events'].length}} events recorded
+		</h2>
 
 		<ol class="hmrc-timeline">
 			{% for event in data['events'] %}
