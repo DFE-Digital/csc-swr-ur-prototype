@@ -42,6 +42,16 @@ router.get('/event', (req, res, next) => {
 	res.render(`${req.version}/event`, {event})
 })
 
+router.get('/note', (req, res, next) => {
+	let id = req.session.data['id']
+
+	// find the event with the matching id from the events object in our session data
+	let note = req.session.data['events'].find(note => note.id === id)
+
+	// render the page and include the event object
+	res.render(`${req.version}/note`, {note})
+})
+
 router.post('/create-event', (req, res, next) => {
 	// generate a long random id and declare the variable
 	let id = crypto.randomBytes(20).toString('hex');

@@ -1,0 +1,45 @@
+{% extends "./layout_no-gov.html" %}
+
+{% block pageTitle %}
+{{event.type}} - {{data['child'] or "Child A"}} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include './includes/phase-banner--alpha.html' %}
+
+{{ govukBackLink({
+	"text": "Back",
+	"href": "javascript: window.history.go(-1)"
+}) 
+}}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		{% if event.private == 'true' %}
+		<span class="govuk-tag govuk-tag--orange govuk-!-margin-bottom-2">
+			Draft
+		</span>
+		{% endif %}
+		<h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+			{{note.type}}
+			<span class="govuk-caption-m">
+				{{note.datetime.split('T')[0] | formatDate('D MMMM YYYY')}} {{"at " + note.datetime | formatDate('h:mma') if note.datetime.split('T')[1].length}}
+			</span>
+		</h1>
+
+		<p>
+			<a href="event?id={{event.id}}" class="govuk-button govuk-button--secondary">Edit note</a>
+		</p>
+
+		<p>
+			{{note['content'] | striptags(true) | escape | nl2br}}
+		</p>
+	</div>
+
+	<div class="govuk-grid-column-one-third">
+	</div>
+</div>
+{% endblock %}
