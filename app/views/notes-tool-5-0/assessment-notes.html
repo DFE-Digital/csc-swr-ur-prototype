@@ -137,6 +137,39 @@ Case notes for {{data['child'] or "Child A"}} - GOV.UK
 				}
 				]
 			}) }}
+
+			{{ govukCheckboxes({
+				idPrefix: "filter-flagged",
+				name: "filter-flagged",
+				classes: "govuk-checkboxes--small",
+				fieldset: 
+				{
+					legend: 
+					{
+						text: "Flagged",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--m govuk-!-margin-bottom-1"
+					}
+				},
+				hint: 
+				{
+					text: ""
+				},
+				items: [
+				{
+					value: "social-worker",
+					text: "Not flagged"
+				},
+				{
+					value: "Arthur White",
+					text: "Flagged"
+				}
+				]
+			}) }}
+
+			{{govukButton({
+				text: 'Apply filters'
+			})}}
 		</div>
 	</div>
 
@@ -180,7 +213,10 @@ Case notes for {{data['child'] or "Child A"}} - GOV.UK
 
 				<h2 class="hmrc-timeline-event-title govuk-heading-m govuk-!-margin-bottom-3">
 					{{event.type}}
-					<span class="hmrc-timeline-event-meta govuk-caption-m govuk-!-font-size-1">
+					<span class="hmrc-timeline-event-meta govuk-caption-m govuk-!-font-size-16 govuk-!-margin-bottom-1 govuk-!-margin-top-1">
+						Added by You
+					</span>
+					<span class="hmrc-timeline-event-meta govuk-caption-m govuk-!-font-size-16">
 						{{event.datetime.split('T')[0] | formatDate('D MMMM YYYY')}} {{"at " + event.datetime | formatDate('h:mma') if event.datetime.split('T')[1].length}}
 					</span>
 				</h2>
@@ -208,13 +244,18 @@ Case notes for {{data['child'] or "Child A"}} - GOV.UK
 					{% endif %}
 					{% endif %}
 
-					<p>
-						{% if event['type'] == 'Note' %}
-						<a href="note?id={{event.id}}">View note</a>
-						{% else %}
-						<a href="event?id={{event.id}}">View event</a>
-						{% endif %}
-					</p>
+					<ul class="govuk-list">
+						<li>
+							{% if event['type'] == 'Note' %}
+							<a href="note?id={{event.id}}" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-3">View note</a>
+							{% else %}
+							<a href="event?id={{event.id}}" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-3">View event</a>
+							{% endif %}
+						</li>
+						<li>
+							<a href="note?id={{event.id}}">Flag this {{'note' if event['type'] == 'Note' else 'event'}}</a>
+						</li>
+					</ul>
 				</div>
 			</li>
 			{% endfor %}

@@ -29,7 +29,8 @@ module.exports = {
     "family-members": [],
     'attachments': [
       'drawing-1.jpg'
-    ]
+    ],
+    'private': 'true'
   },
   {
     'id': 'example-2',
