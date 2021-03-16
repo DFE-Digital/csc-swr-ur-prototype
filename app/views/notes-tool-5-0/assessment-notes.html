@@ -16,7 +16,7 @@ Case notes for {{data['child'] or "Child A"}} - GOV.UK
 </div>
 
 <div class="govuk-grid-row">
-	<div class="govuk-grid-column-one-third govuk-!-margin-bottom-6">
+	<div class="govuk-grid-column-one-third govuk-!-margin-bottom-6" id="filters">
 		<div class="govuk-!-padding-top-2 govuk-!-padding-bottom-2 govuk-!-padding-right-4 govuk-!-padding-left-4" style="border: solid 1px lightgrey; border-bottom: 0 none">
 			<h2 class="govuk-heading-m govuk-!-margin-0">
 				Filter
@@ -187,14 +187,22 @@ Case notes for {{data['child'] or "Child A"}} - GOV.UK
 				name: "create-new",
 				text: "Add an event",
 				value: "event",
-				classes: "govuk-!-margin-right-3 govuk-!-display-inline-block"
+				classes: "govuk-!-display-inline-block govuk-!-margin-right-3"
 			})}}
 
 			{{govukButton({
 				name: "create-new",
 				text: "Create a quick note",
-				classes: "govuk-button--secondary govuk-!-display-inline-block",
+				classes: "govuk-button--secondary govuk-!-display-inline-block govuk-!-margin-right-3",
 				value: "quick-note"
+			})}}
+
+			{{govukButton({
+				name: "toggle-filter",
+				text: "Show filter",
+				classes: "govuk-button--secondary govuk-!-display-inline-block toggle-filter",
+				value: "show-filter",
+				href: "#"
 			})}}
 		</form>
 
@@ -277,4 +285,26 @@ Case notes for {{data['child'] or "Child A"}} - GOV.UK
 		{% endif %}
 	</div>
 </div>
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+	let button = $(".toggle-filter")
+	let filters = $('#filters')
+
+	$(document).on('ready', function(){
+		filters.hide()
+	})
+
+	button.on('click', function(event){
+		event.preventDefault()
+		filters.toggle();
+
+		if(filters.is(':hidden')){
+			button.html('Show filters')
+		} else {
+			button.html('Hide filters')
+		}
+	});
+</script>
 {% endblock %}
